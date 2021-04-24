@@ -1,0 +1,7 @@
+﻿bin/
+obj/
+.idea/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+/IdentityServer/tempkey.jwk
