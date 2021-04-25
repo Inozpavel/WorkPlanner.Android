@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System.Globalization;
+using WorkPlanner.Resources;
+using Xamarin.Forms;
 
 namespace WorkPlanner
 {
@@ -6,9 +8,9 @@ namespace WorkPlanner
     {
         public App()
         {
+            AppResources.Culture = CultureInfo.CurrentUICulture;
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

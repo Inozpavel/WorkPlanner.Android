@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
+             x:Class="WorkPlanner.LoginPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:LoginPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.Resources>
+                <Style TargetType="Entry">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Margin" Value=" 10, 0" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   FontSize="21"
+                   Padding="0,20,0, 0"
+                   Text="{x:Static resources:AppResources.LoginPageHeader}" />
+
+            <Entry Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   x:Name="LoginEntry"
+                   Placeholder="{x:Static resources:AppResources.LoginField}"
+                   Text="{Binding Login}"
+                   Unfocused="CheckCorrectDataEntered" />
+
+            <Entry Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   x:Name="PasswordEntry"
+                   IsPassword="True"
+                   Placeholder="{x:Static resources:AppResources.PasswordField}"
+                   Text="{Binding Password}"
+                   Unfocused="CheckCorrectDataEntered" />
+
+            <StackLayout Grid.Row="3"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Orientation="Horizontal"
+                         Margin="10">
+
+                <CheckBox IsChecked="False"
+                          Color="Black" CheckedChanged="ChangePasswordVisibility" />
+
+                <Label Text="{x:Static resources:AppResources.ShouldShowPassword}"
+                       VerticalOptions="Center"
+                       FontSize="18" />
+
+            </StackLayout>
+
+            <Button Grid.Row="4"
+                    Grid.Column="0"
+                    Text="{x:Static resources:AppResources.RegisterButton}"
+                    VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Transparent"
+                    Command="{Binding RegisterCommand}" />
+
+            <Button Grid.Row="4"
+                    Grid.Column="1"
+                    x:Name="LoginButton"
+                    IsEnabled="False"
+                    CornerRadius="20"
+                    VerticalOptions="End"
+                    Text="{x:Static resources:AppResources.SubmitLoginButton}"
+                    Command="{Binding LoginCommand}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
