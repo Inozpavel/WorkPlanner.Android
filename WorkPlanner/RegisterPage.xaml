@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkPlanner.RegisterPage"
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner">
+
+    <ContentPage.BindingContext>
+        <viewModels:LoginPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontSize" Value="17" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid Padding="10, 10, 10,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Row="0">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Text="{x:Static resources:AppResources.YourName}" />
+
+                    <Entry Grid.Row="1"
+                           Grid.Column="0"
+                           Placeholder="{x:Static resources:AppResources.FirstName}" />
+
+                    <Entry Grid.Row="1"
+                           Grid.Column="1"
+                           Placeholder="{x:Static resources:AppResources.LastName}" />
+
+                    <Entry Grid.Row="2"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Placeholder="{x:Static resources:AppResources.Patronymic}" />
+
+                </Grid>
+            </Frame>
+
+            <Frame Grid.Row="1">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="{x:Static resources:AppResources.Email}" />
+
+                    <Entry Grid.Row="1"
+                           Keyboard="Email"
+                           Placeholder="{x:Static resources:AppResources.Email}" />
+                </Grid>
+            </Frame>
+
+
+            <Frame Grid.Row="2">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="{x:Static  resources:AppResources.YourPassword}" />
+
+                    <Entry Grid.Row="1"
+                            Placeholder="{x:Static resources:AppResources.Password}" />
+
+                    <Entry Grid.Row="2"
+                           Placeholder="{x:Static resources:AppResources.PasswordConfirmation}" />
+                </Grid>
+            </Frame>
+
+            <StackLayout Grid.Row="3" Orientation="Vertical"
+                         VerticalOptions="End">
+                <Line HorizontalOptions="End" StrokeThickness="6" X1="0" X2="1000" Stroke="Red" />
+
+                <Button HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End"
+                        Text="{x:Static resources:AppResources.SubmitRegisterButton}"
+                        Command="{Binding }" />
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

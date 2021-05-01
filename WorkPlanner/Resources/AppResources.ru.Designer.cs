@@ -63,9 +63,27 @@ namespace WorkPlanner.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Адрес электронной почты.
         /// </summary>
-        internal static string LoginField {
+        internal static string Email {
             get {
-                return ResourceManager.GetString("LoginField", resourceCulture);
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имя.
+        /// </summary>
+        internal static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        internal static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
@@ -81,9 +99,27 @@ namespace WorkPlanner.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Пароль.
         /// </summary>
-        internal static string PasswordField {
+        internal static string Password {
             get {
-                return ResourceManager.GetString("PasswordField", resourceCulture);
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подтвердите пароль.
+        /// </summary>
+        internal static string PasswordConfirmation {
+            get {
+                return ResourceManager.GetString("PasswordConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отчество.
+        /// </summary>
+        internal static string Patronymic {
+            get {
+                return ResourceManager.GetString("Patronymic", resourceCulture);
             }
         }
         
@@ -93,6 +129,15 @@ namespace WorkPlanner.Resources {
         internal static string RegisterButton {
             get {
                 return ResourceManager.GetString("RegisterButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запомнить меня.
+        /// </summary>
+        internal static string RememberUser {
+            get {
+                return ResourceManager.GetString("RememberUser", resourceCulture);
             }
         }
         
@@ -111,6 +156,33 @@ namespace WorkPlanner.Resources {
         internal static string SubmitLoginButton {
             get {
                 return ResourceManager.GetString("SubmitLoginButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Зарегестрироваться.
+        /// </summary>
+        internal static string SubmitRegisterButton {
+            get {
+                return ResourceManager.GetString("SubmitRegisterButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Как вас зовут.
+        /// </summary>
+        internal static string YourName {
+            get {
+                return ResourceManager.GetString("YourName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваш пароль.
+        /// </summary>
+        internal static string YourPassword {
+            get {
+                return ResourceManager.GetString("YourPassword", resourceCulture);
             }
         }
     }

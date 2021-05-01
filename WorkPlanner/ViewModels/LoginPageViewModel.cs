@@ -42,7 +42,7 @@ namespace WorkPlanner.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private async Task OpenRegisterPage() => await _navigation.PushAsync(new ContentPage());
+        private async Task OpenRegisterPage() => await _navigation.PushAsync(new RegisterPage());
 
         private void SendLoginData()
         {
