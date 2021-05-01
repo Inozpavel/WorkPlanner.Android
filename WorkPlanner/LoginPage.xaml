@@ -28,6 +28,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -43,7 +44,7 @@
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    x:Name="LoginEntry"
-                   Placeholder="{x:Static resources:AppResources.LoginField}"
+                   Placeholder="{x:Static resources:AppResources.Email}"
                    Text="{Binding Login}"
                    Unfocused="CheckCorrectDataEntered" />
 
@@ -52,7 +53,7 @@
                    Grid.ColumnSpan="2"
                    x:Name="PasswordEntry"
                    IsPassword="True"
-                   Placeholder="{x:Static resources:AppResources.PasswordField}"
+                   Placeholder="{x:Static resources:AppResources.Password}"
                    Text="{Binding Password}"
                    Unfocused="CheckCorrectDataEntered" />
 
@@ -71,7 +72,15 @@
 
             </StackLayout>
 
-            <Button Grid.Row="4"
+            <StackLayout Grid.Row="4"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Orientation="Horizontal">
+                <Switch IsToggled="{Binding ShouldRememberUser}" />
+                <Label Text="{x:Static resources:AppResources.RememberUser}" />
+            </StackLayout>
+
+            <Button Grid.Row="5"
                     Grid.Column="0"
                     Text="{x:Static resources:AppResources.RegisterButton}"
                     VerticalOptions="End"
@@ -79,7 +88,7 @@
                     BackgroundColor="Transparent"
                     Command="{Binding RegisterCommand}" />
 
-            <Button Grid.Row="4"
+            <Button Grid.Row="5"
                     Grid.Column="1"
                     x:Name="LoginButton"
                     IsEnabled="False"

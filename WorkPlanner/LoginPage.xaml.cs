@@ -20,7 +20,7 @@ namespace WorkPlanner
 
         private void CheckCorrectDataEntered(object sender, EventArgs e)
         {
-            LoginEntry.TextColor = !Regex.IsMatch(LoginEntry.Text, EmailRegex) ? Color.Red : Color.Black;
+            LoginEntry.TextColor = !Regex.IsMatch(LoginEntry.Text ?? "", EmailRegex) ? Color.Red : Color.Black;
             if (string.IsNullOrWhiteSpace(LoginEntry.Text) || string.IsNullOrWhiteSpace(PasswordEntry.Text))
                 return;
             UpdateLoginButtonState();
@@ -28,7 +28,7 @@ namespace WorkPlanner
 
         private void ChangePasswordVisibility(object sender, CheckedChangedEventArgs e)
         {
-            if (!(sender is CheckBox checkBox))
+            if (sender is not CheckBox checkBox)
                 return;
             PasswordEntry.IsPassword = !checkBox.IsChecked;
         }

@@ -30,6 +30,8 @@ namespace WorkPlanner.ViewModels
 
         public string Login { get; set; }
 
+        public bool ShouldRememberUser { get; set; }
+
         public string Password
         {
             get => _password;
