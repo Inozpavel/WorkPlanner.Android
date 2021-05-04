@@ -61,6 +61,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не получилось связаться с сервером, попробуйте позже.
+        /// </summary>
+        internal static string ConnectionFailed {
+            get {
+                return ResourceManager.GetString("ConnectionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Адрес электронной почты.
         /// </summary>
         internal static string Email {
@@ -70,11 +79,29 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ошибка при регистрации.
+        /// </summary>
+        internal static string FailedRegistrationAlertTitle {
+            get {
+                return ResourceManager.GetString("FailedRegistrationAlertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Имя.
         /// </summary>
         internal static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отсутствует соединение с интернетом, проверьте свое подключение.
+        /// </summary>
+        internal static string InternetIsMissing {
+            get {
+                return ResourceManager.GetString("InternetIsMissing", resourceCulture);
             }
         }
         
@@ -165,6 +192,24 @@ namespace WorkPlanner.Resources {
         internal static string SubmitRegisterButton {
             get {
                 return ResourceManager.GetString("SubmitRegisterButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вы успешно зарегестрировались! Теперь осталось подтвердить адрес электронной почты для входа, проверьте адрес электронной почты..
+        /// </summary>
+        internal static string SuccessfullRegistrationAlertMessage {
+            get {
+                return ResourceManager.GetString("SuccessfullRegistrationAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успешная регистрация.
+        /// </summary>
+        internal static string SuccessfullRegistrationAlertTitle {
+            get {
+                return ResourceManager.GetString("SuccessfullRegistrationAlertTitle", resourceCulture);
             }
         }
         

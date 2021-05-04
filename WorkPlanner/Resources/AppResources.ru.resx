@@ -60,4 +60,19 @@
     <data name="YourPassword" xml:space="preserve">
         <value>Ваш пароль</value>
     </data>
+    <data name="SuccessfullRegistrationAlertMessage" xml:space="preserve">
+        <value>Вы успешно зарегестрировались! Теперь осталось подтвердить адрес электронной почты для входа, проверьте адрес электронной почты.</value>
+    </data>
+    <data name="SuccessfullRegistrationAlertTitle" xml:space="preserve">
+        <value>Успешная регистрация</value>
+    </data>
+    <data name="FailedRegistrationAlertTitle" xml:space="preserve">
+        <value>Ошибка при регистрации</value>
+    </data>
+    <data name="ConnectionFailed" xml:space="preserve">
+        <value>Не получилось связаться с сервером, попробуйте позже</value>
+    </data>
+    <data name="InternetIsMissing" xml:space="preserve">
+        <value>Отсутствует соединение с интернетом, проверьте свое подключение</value>
+    </data>
 </root>

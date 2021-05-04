@@ -76,7 +76,8 @@
                          Grid.Column="0"
                          Grid.ColumnSpan="2"
                          Orientation="Horizontal">
-                <Switch IsToggled="{Binding ShouldRememberUser}" />
+                <Switch Margin="10, 0, 0, 0"
+                        IsToggled="{Binding ShouldRememberUser}" />
                 <Label Text="{x:Static resources:AppResources.RememberUser}" />
             </StackLayout>
 
@@ -86,7 +87,7 @@
                     VerticalOptions="End"
                     HorizontalOptions="Center"
                     BackgroundColor="Transparent"
-                    Command="{Binding RegisterCommand}" />
+                    Command="{Binding OpenRegisterPageCommand}" />
 
             <Button Grid.Row="5"
                     Grid.Column="1"

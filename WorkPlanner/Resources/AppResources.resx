@@ -43,7 +43,7 @@
         <value>First name</value>
     </data>
     <data name="LastName" xml:space="preserve">
-        <value>Second name</value>
+        <value>Last name</value>
     </data>
     <data name="Patronymic" xml:space="preserve">
         <value>Patronymic</value>
@@ -59,5 +59,20 @@
     </data>
     <data name="YourPassword" xml:space="preserve">
         <value>Enter your password</value>
+    </data>
+    <data name="SuccessfullRegistrationAlertMessage" xml:space="preserve">
+        <value>You have successfully registered! Now all that remains is to confirm your login email address, check your email address</value>
+    </data>
+    <data name="SuccessfullRegistrationAlertTitle" xml:space="preserve">
+        <value>Sucessfull registration</value>
+    </data>
+    <data name="FailedRegistrationAlertTitle" xml:space="preserve">
+        <value>Registration error</value>
+    </data>
+    <data name="ConnectionFailed" xml:space="preserve">
+        <value>Failed to connect to the server, please try again later</value>
+    </data>
+    <data name="InternetIsMissing" xml:space="preserve">
+        <value>No internet connection, check your connection</value>
     </data>
 </root>

@@ -7,7 +7,7 @@
              xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner">
 
     <ContentPage.BindingContext>
-        <viewModels:LoginPageViewModel />
+        <viewModels:RegisterPageViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
@@ -18,7 +18,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid Padding="10, 10, 10,0">
+        <Grid Padding="10, 10, 10, 0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -48,16 +48,19 @@
 
                     <Entry Grid.Row="1"
                            Grid.Column="0"
-                           Placeholder="{x:Static resources:AppResources.FirstName}" />
+                           Placeholder="{x:Static resources:AppResources.LastName}"
+                           Text="{Binding Request.LastName}" />
 
                     <Entry Grid.Row="1"
                            Grid.Column="1"
-                           Placeholder="{x:Static resources:AppResources.LastName}" />
+                           Placeholder="{x:Static resources:AppResources.FirstName}"
+                           Text="{Binding Request.FirstName}" />
 
                     <Entry Grid.Row="2"
                            Grid.Column="0"
                            Grid.ColumnSpan="2"
-                           Placeholder="{x:Static resources:AppResources.Patronymic}" />
+                           Placeholder="{x:Static resources:AppResources.Patronymic}"
+                           Text="{Binding Request.Patronymic}" />
 
                 </Grid>
             </Frame>
@@ -74,7 +77,8 @@
 
                     <Entry Grid.Row="1"
                            Keyboard="Email"
-                           Placeholder="{x:Static resources:AppResources.Email}" />
+                           Placeholder="{x:Static resources:AppResources.Email}"
+                           Text="{Binding Request.Email}" />
                 </Grid>
             </Frame>
 
@@ -86,26 +90,46 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Text="{x:Static  resources:AppResources.YourPassword}" />
 
                     <Entry Grid.Row="1"
-                            Placeholder="{x:Static resources:AppResources.Password}" />
+                           x:Name="PasswordEntry"
+                           IsPassword="True"
+                           Placeholder="{x:Static resources:AppResources.Password}"
+                           Text="{Binding Request.Password}" />
 
                     <Entry Grid.Row="2"
-                           Placeholder="{x:Static resources:AppResources.PasswordConfirmation}" />
+                           x:Name="PasswordConfirmationEntry"
+                           IsPassword="True"
+                           Placeholder="{x:Static resources:AppResources.PasswordConfirmation}"
+                           Text="{Binding Request.PasswordConfirmation}" />
+
+                    <StackLayout Grid.Row="3" Orientation="Horizontal">
+
+                        <CheckBox Color="Black"
+                                  CheckedChanged="CheckBox_OnCheckedChanged" />
+
+                        <Label VerticalOptions="Center"
+                               Text="{x:Static resources:AppResources.ShouldShowPassword}" />
+
+                    </StackLayout>
+
                 </Grid>
             </Frame>
 
             <StackLayout Grid.Row="3" Orientation="Vertical"
                          VerticalOptions="End">
-                <Line HorizontalOptions="End" StrokeThickness="6" X1="0" X2="1000" Stroke="Red" />
+                <Line HorizontalOptions="End" StrokeThickness="6" X1="0" X2="1000" Stroke="Black" />
 
                 <Button HorizontalOptions="FillAndExpand"
+                        BackgroundColor="CornflowerBlue"
                         VerticalOptions="End"
+                        Margin="0, 0, 0, 5"
                         Text="{x:Static resources:AppResources.SubmitRegisterButton}"
-                        Command="{Binding }" />
+                        Command="{Binding RegisterCommand}" />
             </StackLayout>
 
         </Grid>

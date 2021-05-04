@@ -17,7 +17,7 @@ namespace WorkPlanner.ViewModels
         {
             _navigation = navigation;
             LoginCommand = new Command(SendLoginData);
-            RegisterCommand = new Command(async () => await OpenRegisterPage());
+            OpenRegisterPageCommand = new Command(async () => await OpenRegisterPage());
         }
 
         public LoginPageViewModel()
@@ -26,7 +26,7 @@ namespace WorkPlanner.ViewModels
 
         public ICommand LoginCommand { get; }
 
-        public ICommand RegisterCommand { get; }
+        public ICommand OpenRegisterPageCommand { get; }
 
         public string Login { get; set; }
 

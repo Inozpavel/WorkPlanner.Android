@@ -61,11 +61,29 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to connect to the server, please try again later.
+        /// </summary>
+        internal static string ConnectionFailed {
+            get {
+                return ResourceManager.GetString("ConnectionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration error.
+        /// </summary>
+        internal static string FailedRegistrationAlertTitle {
+            get {
+                return ResourceManager.GetString("FailedRegistrationAlertTitle", resourceCulture);
             }
         }
         
@@ -79,7 +97,16 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Second name.
+        ///   Looks up a localized string similar to No internet connection, check your connection.
+        /// </summary>
+        internal static string InternetIsMissing {
+            get {
+                return ResourceManager.GetString("InternetIsMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
         /// </summary>
         internal static string LastName {
             get {
@@ -165,6 +192,24 @@ namespace WorkPlanner.Resources {
         internal static string SubmitRegisterButton {
             get {
                 return ResourceManager.GetString("SubmitRegisterButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have successfully registered! Now all that remains is to confirm your login email address, check your email address.
+        /// </summary>
+        internal static string SuccessfullRegistrationAlertMessage {
+            get {
+                return ResourceManager.GetString("SuccessfullRegistrationAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sucessfull registration.
+        /// </summary>
+        internal static string SuccessfullRegistrationAlertTitle {
+            get {
+                return ResourceManager.GetString("SuccessfullRegistrationAlertTitle", resourceCulture);
             }
         }
         
