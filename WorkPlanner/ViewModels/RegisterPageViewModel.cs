@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json.Linq;
 using WorkPlanner.Requests;
@@ -15,12 +16,13 @@ using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
-    public class RegisterPageViewModel : INotifyPropertyChanged
+    public sealed class RegisterPageViewModel : INotifyPropertyChanged
     {
         public RegisterPageViewModel()
         {
             Request = new RegisterUserRequest();
-            RegisterCommand = new Command(Register);
+            RegisterCommand = new Command(ServerHelper.HandleOperationCancelled(Register,
+                () => OnRegistrationFailed?.Invoke(this, AppResources.ConnectionFailed)));
         }
 
         public ICommand RegisterCommand { get; }
@@ -35,7 +37,7 @@ namespace WorkPlanner.ViewModels
 
         public event EventHandler OnRegistrationSuccess;
 
-        private async void Register()
+        private async Task Register()
         {
             OnSendingDataStarted?.Invoke(this, EventArgs.Empty);
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -46,31 +48,24 @@ namespace WorkPlanner.ViewModels
 
             string data = await ServerHelper.SerializeObjectAsync(Request);
 
-            try
-            {
-                var result = await ServerHelper.GetClient().PostAsync(Settings.RegisterUrl,
-                    new StringContent(data, Encoding.UTF8, "application/json"));
+            var result = await ServerHelper.GetClient().PostAsync(Settings.RegisterUrl,
+                new StringContent(data, Encoding.UTF8, "application/json"));
 
-                if (result.StatusCode == HttpStatusCode.OK)
-                    OnRegistrationSuccess?.Invoke(this, EventArgs.Empty);
-                else
-                {
-                    var errorBody = JObject.Parse(await result.Content.ReadAsStringAsync());
-                    var errors = errorBody["errors"].ToObject<Dictionary<string, List<string>>>();
-                    foreach (var keyValuePair in errors)
-                    {
-                        OnRegistrationFailed?.Invoke(this, keyValuePair.Value.First());
-                        return;
-                    }
-                }
-            }
-            catch (OperationCanceledException)
+            if (result.StatusCode == HttpStatusCode.OK)
+                OnRegistrationSuccess?.Invoke(this, EventArgs.Empty);
+            else
             {
-                OnRegistrationFailed?.Invoke(this, AppResources.ConnectionFailed);
+                var errorBody = JObject.Parse(await result.Content.ReadAsStringAsync());
+                var errors = errorBody["errors"].ToObject<Dictionary<string, List<string>>>();
+                foreach (var keyValuePair in errors)
+                {
+                    OnRegistrationFailed?.Invoke(this, keyValuePair.Value.First());
+                    return;
+                }
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

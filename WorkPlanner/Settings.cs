@@ -6,6 +6,8 @@
 
         private const string AccountsUrlBase = UrlBase + "identity/accounts/";
 
-        public const string RegisterUrl = AccountsUrlBase + "register/";
+        public const string RegisterUrl = AccountsUrlBase + "register";
+
+        public const string LoginUrl = UrlBase + "identity/connect/token";
     }
 }

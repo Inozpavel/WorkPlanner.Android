@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
              xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
-             x:Class="WorkPlanner.LoginPage">
+             x:Class="WorkPlanner.Pages.LoginPage">
 
     <ContentPage.BindingContext>
         <viewModels:LoginPageViewModel />
@@ -87,7 +87,7 @@
                     VerticalOptions="End"
                     HorizontalOptions="Center"
                     BackgroundColor="Transparent"
-                    Command="{Binding OpenRegisterPageCommand}" />
+                    Clicked="Button_OnClicked" />
 
             <Button Grid.Row="5"
                     Grid.Column="1"

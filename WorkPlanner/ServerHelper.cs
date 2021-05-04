@@ -22,5 +22,21 @@ namespace WorkPlanner
                 }));
             return data;
         }
+
+
+        public static Action HandleOperationCancelled(Func<Task> action, Action onError)
+        {
+            return async () =>
+            {
+                try
+                {
+                    await action();
+                }
+                catch (OperationCanceledException e)
+                {
+                    onError?.Invoke();
+                }
+            };
+        }
     }
 }

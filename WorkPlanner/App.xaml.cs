@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using WorkPlanner.Pages;
 using WorkPlanner.Resources;
 using Xamarin.Forms;
 

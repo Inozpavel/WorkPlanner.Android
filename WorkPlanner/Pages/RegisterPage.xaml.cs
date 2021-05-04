@@ -4,7 +4,7 @@ using WorkPlanner.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WorkPlanner
+namespace WorkPlanner.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
@@ -32,9 +32,10 @@ namespace WorkPlanner
 
         private async void ContextOnOnRegistrationSuccess(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
-            await DisplayAlert(AppResources.SuccessfullRegistrationAlertTitle,
-                AppResources.SuccessfullRegistrationAlertMessage, "Ok");
+            Content = _savedContent;
+            await DisplayAlert(AppResources.SuccessfulRegistrationAlertTitle,
+                AppResources.SuccessfulRegistrationAlertMessage, "Ok");
+            await Navigation.PopModalAsync();
         }
 
         private async void ContextOnOnRegistrationFailed(object sender, string errorMessage)

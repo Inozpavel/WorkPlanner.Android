@@ -79,6 +79,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login error.
+        /// </summary>
+        internal static string FailedLoginAlertTitle {
+            get {
+                return ResourceManager.GetString("FailedLoginAlertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration error.
         /// </summary>
         internal static string FailedRegistrationAlertTitle {
@@ -93,6 +102,15 @@ namespace WorkPlanner.Resources {
         internal static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect login or password.
+        /// </summary>
+        internal static string IncorrectLoginData {
+            get {
+                return ResourceManager.GetString("IncorrectLoginData", resourceCulture);
             }
         }
         
@@ -198,18 +216,18 @@ namespace WorkPlanner.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You have successfully registered! Now all that remains is to confirm your login email address, check your email address.
         /// </summary>
-        internal static string SuccessfullRegistrationAlertMessage {
+        internal static string SuccessfulRegistrationAlertMessage {
             get {
-                return ResourceManager.GetString("SuccessfullRegistrationAlertMessage", resourceCulture);
+                return ResourceManager.GetString("SuccessfulRegistrationAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Sucessfull registration.
         /// </summary>
-        internal static string SuccessfullRegistrationAlertTitle {
+        internal static string SuccessfulRegistrationAlertTitle {
             get {
-                return ResourceManager.GetString("SuccessfullRegistrationAlertTitle", resourceCulture);
+                return ResourceManager.GetString("SuccessfulRegistrationAlertTitle", resourceCulture);
             }
         }
         

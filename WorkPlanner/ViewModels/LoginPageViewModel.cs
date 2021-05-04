@@ -1,32 +1,27 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Newtonsoft.Json.Linq;
+using WorkPlanner.Resources;
 using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
     public sealed class LoginPageViewModel : INotifyPropertyChanged
     {
-        private readonly INavigation _navigation;
-
         private string _password;
-
-
-        public LoginPageViewModel(INavigation navigation)
-        {
-            _navigation = navigation;
-            LoginCommand = new Command(SendLoginData);
-            OpenRegisterPageCommand = new Command(async () => await OpenRegisterPage());
-        }
 
         public LoginPageViewModel()
         {
+            LoginCommand = new Command(ServerHelper.HandleOperationCancelled(SendLoginData,
+                () => OnFailedLogin?.Invoke(this, AppResources.ConnectionFailed)));
         }
 
         public ICommand LoginCommand { get; }
-
-        public ICommand OpenRegisterPageCommand { get; }
 
         public string Login { get; set; }
 
@@ -44,10 +39,36 @@ namespace WorkPlanner.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private async Task OpenRegisterPage() => await _navigation.PushAsync(new RegisterPage());
+        public event EventHandler OnSuccessfulLogin;
 
-        private void SendLoginData()
+        public event EventHandler<string> OnFailedLogin;
+
+
+        private async Task SendLoginData()
         {
+            var loginData = new Dictionary<string, string>
+            {
+                ["grant_type"] = "password",
+                ["client_id"] = "MobileApp",
+                ["username"] = Login,
+                ["password"] = Password
+            };
+            var client = ServerHelper.GetClient();
+            var result = await client.PostAsync(Settings.LoginUrl, new FormUrlEncodedContent(loginData));
+
+            if (result.IsSuccessStatusCode)
+            {
+                var response = JObject.Parse(await result.Content.ReadAsStringAsync())
+                    .ToObject<Dictionary<string, string>>();
+
+                string accessToken = response["access_token"];
+
+
+                OnSuccessfulLogin?.Invoke(this, EventArgs.Empty);
+                return;
+            }
+
+            OnFailedLogin?.Invoke(this, AppResources.IncorrectLoginData);
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null) =>

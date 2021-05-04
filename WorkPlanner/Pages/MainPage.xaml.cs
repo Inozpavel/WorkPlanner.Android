@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace WorkPlanner
+namespace WorkPlanner.Pages
 {
     public partial class MainPage : ContentPage
     {

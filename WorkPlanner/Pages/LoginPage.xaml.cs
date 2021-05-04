@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using WorkPlanner.Resources;
 using WorkPlanner.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WorkPlanner
+namespace WorkPlanner.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
@@ -14,9 +15,19 @@ namespace WorkPlanner
         public LoginPage()
         {
             InitializeComponent();
-            BindingContext = new LoginPageViewModel(Navigation);
+            var context = new LoginPageViewModel();
+            BindingContext = context;
             UpdateLoginButtonState();
+
+            context.OnSuccessfulLogin += ContextOnOnSuccessfulLogin;
+            context.OnFailedLogin += ContextOnOnFailedLogin;
         }
+
+        private void ContextOnOnFailedLogin(object sender, string message) =>
+            DisplayAlert(AppResources.FailedLoginAlertTitle, message, "Ok");
+
+        private async void ContextOnOnSuccessfulLogin(object sender, EventArgs e) =>
+            await Navigation.PushAsync(new MainTabbedPage());
 
         private void CheckCorrectDataEntered(object sender, EventArgs e)
         {
@@ -35,5 +46,7 @@ namespace WorkPlanner
 
         private void UpdateLoginButtonState() =>
             LoginButton.IsEnabled = PasswordEntry.Text?.Length > 0 && LoginEntry.TextColor != Color.Red;
+
+        private void Button_OnClicked(object sender, EventArgs e) => Navigation.PushModalAsync(new RegisterPage());
     }
 }

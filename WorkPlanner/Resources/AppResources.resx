@@ -60,10 +60,10 @@
     <data name="YourPassword" xml:space="preserve">
         <value>Enter your password</value>
     </data>
-    <data name="SuccessfullRegistrationAlertMessage" xml:space="preserve">
+    <data name="SuccessfulRegistrationAlertMessage" xml:space="preserve">
         <value>You have successfully registered! Now all that remains is to confirm your login email address, check your email address</value>
     </data>
-    <data name="SuccessfullRegistrationAlertTitle" xml:space="preserve">
+    <data name="SuccessfulRegistrationAlertTitle" xml:space="preserve">
         <value>Sucessfull registration</value>
     </data>
     <data name="FailedRegistrationAlertTitle" xml:space="preserve">
@@ -74,5 +74,11 @@
     </data>
     <data name="InternetIsMissing" xml:space="preserve">
         <value>No internet connection, check your connection</value>
+    </data>
+    <data name="FailedLoginAlertTitle" xml:space="preserve">
+        <value>Login error</value>
+    </data>
+    <data name="IncorrectLoginData" xml:space="preserve">
+        <value>Incorrect login or password</value>
     </data>
 </root>

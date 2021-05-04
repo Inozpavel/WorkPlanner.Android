@@ -79,6 +79,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ошибка при входе в аккаунт.
+        /// </summary>
+        internal static string FailedLoginAlertTitle {
+            get {
+                return ResourceManager.GetString("FailedLoginAlertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ошибка при регистрации.
         /// </summary>
         internal static string FailedRegistrationAlertTitle {
@@ -93,6 +102,15 @@ namespace WorkPlanner.Resources {
         internal static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неправильный логин или пароль.
+        /// </summary>
+        internal static string IncorrectLoginData {
+            get {
+                return ResourceManager.GetString("IncorrectLoginData", resourceCulture);
             }
         }
         
@@ -198,18 +216,18 @@ namespace WorkPlanner.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Вы успешно зарегестрировались! Теперь осталось подтвердить адрес электронной почты для входа, проверьте адрес электронной почты..
         /// </summary>
-        internal static string SuccessfullRegistrationAlertMessage {
+        internal static string SuccessfulRegistrationAlertMessage {
             get {
-                return ResourceManager.GetString("SuccessfullRegistrationAlertMessage", resourceCulture);
+                return ResourceManager.GetString("SuccessfulRegistrationAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Успешная регистрация.
         /// </summary>
-        internal static string SuccessfullRegistrationAlertTitle {
+        internal static string SuccessfulRegistrationAlertTitle {
             get {
-                return ResourceManager.GetString("SuccessfullRegistrationAlertTitle", resourceCulture);
+                return ResourceManager.GetString("SuccessfulRegistrationAlertTitle", resourceCulture);
             }
         }
         
