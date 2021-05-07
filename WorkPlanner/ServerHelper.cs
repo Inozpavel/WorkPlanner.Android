@@ -24,7 +24,7 @@ namespace WorkPlanner
         }
 
 
-        public static Action HandleOperationCancelled(Func<Task> action, Action onError)
+        public static Action HandleFailedConnectToServer(Func<Task> action, Action onError)
         {
             return async () =>
             {
@@ -32,9 +32,11 @@ namespace WorkPlanner
                 {
                     await action();
                 }
-                catch (OperationCanceledException e)
+                catch (Exception e)
                 {
-                    onError?.Invoke();
+                    if (e.Message == "Socket closed" || e.GetType() == typeof(OperationCanceledException))
+                        onError?.Invoke();
+                    else throw;
                 }
             };
         }

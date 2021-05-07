@@ -21,7 +21,7 @@ namespace WorkPlanner.ViewModels
         public RegisterPageViewModel()
         {
             Request = new RegisterUserRequest();
-            RegisterCommand = new Command(ServerHelper.HandleOperationCancelled(Register,
+            RegisterCommand = new Command(ServerHelper.HandleFailedConnectToServer(Register,
                 () => OnRegistrationFailed?.Invoke(this, AppResources.ConnectionFailed)));
         }
 

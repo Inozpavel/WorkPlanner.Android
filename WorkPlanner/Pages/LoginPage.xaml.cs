@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using WorkPlanner.Resources;
 using WorkPlanner.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,8 +18,6 @@ namespace WorkPlanner.Pages
             InitializeComponent();
             var context = new LoginPageViewModel();
             BindingContext = context;
-            UpdateLoginButtonState();
-
             context.OnSuccessfulLogin += ContextOnOnSuccessfulLogin;
             context.OnFailedLogin += ContextOnOnFailedLogin;
         }
@@ -27,7 +26,7 @@ namespace WorkPlanner.Pages
             DisplayAlert(AppResources.FailedLoginAlertTitle, message, "Ok");
 
         private async void ContextOnOnSuccessfulLogin(object sender, EventArgs e) =>
-            await Navigation.PushAsync(new MainTabbedPage());
+            await Navigation.PushModalAsync(new MainTabbedPage());
 
         private void CheckCorrectDataEntered(object sender, EventArgs e)
         {
@@ -48,5 +47,20 @@ namespace WorkPlanner.Pages
             LoginButton.IsEnabled = PasswordEntry.Text?.Length > 0 && LoginEntry.TextColor != Color.Red;
 
         private void Button_OnClicked(object sender, EventArgs e) => Navigation.PushModalAsync(new RegisterPage());
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            try
+            {
+                LoginEntry.Text = await SecureStorage.GetAsync("Login");
+                PasswordEntry.Text = await SecureStorage.GetAsync("Password");
+                UpdateLoginButtonState();
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
     }
 }

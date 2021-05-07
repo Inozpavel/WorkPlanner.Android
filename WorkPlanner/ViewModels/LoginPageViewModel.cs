@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json.Linq;
 using WorkPlanner.Resources;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
@@ -17,7 +18,7 @@ namespace WorkPlanner.ViewModels
 
         public LoginPageViewModel()
         {
-            LoginCommand = new Command(ServerHelper.HandleOperationCancelled(SendLoginData,
+            LoginCommand = new Command(ServerHelper.HandleFailedConnectToServer(SendLoginData,
                 () => OnFailedLogin?.Invoke(this, AppResources.ConnectionFailed)));
         }
 
@@ -63,6 +64,23 @@ namespace WorkPlanner.ViewModels
 
                 string accessToken = response["access_token"];
 
+                if (ShouldRememberUser)
+                {
+                    try
+                    {
+                        await SecureStorage.SetAsync(nameof(Login), Login);
+                        await SecureStorage.SetAsync(nameof(Password), Password);
+                        await SecureStorage.SetAsync(nameof(accessToken), accessToken);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                else
+                {
+                    SecureStorage.RemoveAll();
+                }
+                
 
                 OnSuccessfulLogin?.Invoke(this, EventArgs.Empty);
                 return;
