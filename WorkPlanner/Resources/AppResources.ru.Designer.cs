@@ -61,6 +61,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Действие выполнено.
+        /// </summary>
+        internal static string ActionCompleted {
+            get {
+                return ResourceManager.GetString("ActionCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не получилось связаться с сервером, попробуйте позже.
         /// </summary>
         internal static string ConnectionFailed {
@@ -75,6 +84,60 @@ namespace WorkPlanner.Resources {
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Статус подтверждения по электронной почте.
+        /// </summary>
+        internal static string EmailConfirmedStatusTitle {
+            get {
+                return ResourceManager.GetString("EmailConfirmedStatusTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адрес электронной почты подтвержден.
+        /// </summary>
+        internal static string EmailIsConfirmedStatus {
+            get {
+                return ResourceManager.GetString("EmailIsConfirmedStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адрес электронной почты еще не подтвержден. Хотете получить письмо с подтвержением повторно?.
+        /// </summary>
+        internal static string EmailIsNotConfirmedStatus {
+            get {
+                return ResourceManager.GetString("EmailIsNotConfirmedStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не получилось отправить письмо, попробуйте позже!.
+        /// </summary>
+        internal static string EmailResentFailed {
+            get {
+                return ResourceManager.GetString("EmailResentFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Письмо успешно переотправлено. Проверьте почту.
+        /// </summary>
+        internal static string EmailResentSuccess {
+            get {
+                return ResourceManager.GetString("EmailResentSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Произошла ошибка.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
@@ -142,6 +205,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Нет.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пароль.
         /// </summary>
         internal static string Password {
@@ -169,6 +241,24 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Номер телефона.
+        /// </summary>
+        internal static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Профиль.
+        /// </summary>
+        internal static string ProfilePageTitle {
+            get {
+                return ResourceManager.GetString("ProfilePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Создать аккаунт.
         /// </summary>
         internal static string RegisterButton {
@@ -183,6 +273,24 @@ namespace WorkPlanner.Resources {
         internal static string RememberUser {
             get {
                 return ResourceManager.GetString("RememberUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Комнаты.
+        /// </summary>
+        internal static string RoomsPageTitle {
+            get {
+                return ResourceManager.GetString("RoomsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настройки.
+        /// </summary>
+        internal static string SettingsPageTitle {
+            get {
+                return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
             }
         }
         
@@ -228,6 +336,24 @@ namespace WorkPlanner.Resources {
         internal static string SuccessfulRegistrationAlertTitle {
             get {
                 return ResourceManager.GetString("SuccessfulRegistrationAlertTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не получилось обновить информацию, попробуйте позже!.
+        /// </summary>
+        internal static string UpdateFailed {
+            get {
+                return ResourceManager.GetString("UpdateFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Да.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
         

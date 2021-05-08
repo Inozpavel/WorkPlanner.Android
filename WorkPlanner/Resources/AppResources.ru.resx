@@ -81,4 +81,46 @@
     <data name="IncorrectLoginData" xml:space="preserve">
         <value>Неправильный логин или пароль</value>
     </data>
+    <data name="ProfilePageTitle" xml:space="preserve">
+        <value>Профиль</value>
+    </data>
+    <data name="PhoneNumber" xml:space="preserve">
+        <value>Номер телефона</value>
+    </data>
+    <data name="RoomsPageTitle" xml:space="preserve">
+        <value>Комнаты</value>
+    </data>
+    <data name="SettingsPageTitle" xml:space="preserve">
+        <value>Настройки</value>
+    </data>
+    <data name="EmailIsNotConfirmedStatus" xml:space="preserve">
+        <value>Адрес электронной почты еще не подтвержден. Хотете получить письмо с подтвержением повторно?</value>
+    </data>
+    <data name="EmailIsConfirmedStatus" xml:space="preserve">
+        <value>Адрес электронной почты подтвержден</value>
+    </data>
+    <data name="EmailConfirmedStatusTitle" xml:space="preserve">
+        <value>Статус подтверждения по электронной почте</value>
+    </data>
+    <data name="No" xml:space="preserve">
+        <value>Нет</value>
+    </data>
+    <data name="Yes" xml:space="preserve">
+        <value>Да</value>
+    </data>
+    <data name="EmailResentSuccess" xml:space="preserve">
+        <value>Письмо успешно переотправлено. Проверьте почту</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>Произошла ошибка</value>
+    </data>
+    <data name="ActionCompleted" xml:space="preserve">
+        <value>Действие выполнено</value>
+    </data>
+    <data name="EmailResentFailed" xml:space="preserve">
+        <value>Не получилось отправить письмо, попробуйте позже!</value>
+    </data>
+    <data name="UpdateFailed" xml:space="preserve">
+        <value>Не получилось обновить информацию, попробуйте позже!</value>
+    </data>
 </root>

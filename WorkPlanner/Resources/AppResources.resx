@@ -81,4 +81,46 @@
     <data name="IncorrectLoginData" xml:space="preserve">
         <value>Incorrect login or password</value>
     </data>
+    <data name="ProfilePageTitle" xml:space="preserve">
+        <value>Profile</value>
+    </data>
+    <data name="PhoneNumber" xml:space="preserve">
+        <value>Phone number</value>
+    </data>
+    <data name="RoomsPageTitle" xml:space="preserve">
+        <value>Rooms</value>
+    </data>
+    <data name="SettingsPageTitle" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="EmailConfirmedStatusTitle" xml:space="preserve">
+        <value>Email confirmation status</value>
+    </data>
+    <data name="EmailIsConfirmedStatus" xml:space="preserve">
+        <value>Email address is confirmed</value>
+    </data>
+    <data name="EmailIsNotConfirmedStatus" xml:space="preserve">
+        <value>The email address is not verified. Would you like to resend a confirmation email again?</value>
+    </data>
+    <data name="Yes" xml:space="preserve">
+        <value>Yes</value>
+    </data>
+    <data name="No" xml:space="preserve">
+        <value>No</value>
+    </data>
+    <data name="EmailResentSuccess" xml:space="preserve">
+        <value>The email was successfully resent. Check your mail</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>An error occurred</value>
+    </data>
+    <data name="EmailResentFailed" xml:space="preserve">
+        <value>Failed to send email, please try again later!</value>
+    </data>
+    <data name="ActionCompleted" xml:space="preserve">
+        <value>Action completed</value>
+    </data>
+    <data name="UpdateFailed" xml:space="preserve">
+        <value>Failed to update information, please try again later!</value>
+    </data>
 </root>

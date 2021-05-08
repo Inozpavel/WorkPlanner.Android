@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
+             x:Class="WorkPlanner.Pages.ProfilePage">
+
+    <ContentPage.BindingContext>
+        <viewModels:ProfilePageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Update"
+                     Order="Primary"
+                     Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="10, 0, 10, 0" />
+        </Style>
+    </ContentPage.Resources>
+
+    <RefreshView x:Name="ProfileRefreshView" RefreshColor="Teal" Command="{Binding UpdateProfileCommand}">
+        <ScrollView>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="{x:Static resources:AppResources.LastName}" />
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding LastName}" />
+
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="{x:Static resources:AppResources.FirstName}" />
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding FirstName}" />
+
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="{x:Static resources:AppResources.Patronymic}" />
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding Patronymic}" />
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Text="{x:Static resources:AppResources.PhoneNumber}" />
+                <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Text="{Binding PhoneNumber}" />
+
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Text="{x:Static resources:AppResources.Email}" />
+                <Label Grid.Row="4"
+                       Grid.Column="1"
+                       Text="{Binding Email}" />
+
+                <ImageButton Grid.Row="4"
+                             Grid.Column="2"
+                             HeightRequest="35"
+                             WidthRequest="35"
+                             Margin="0, 0, 10, 0"
+                             VerticalOptions="Center"
+                             BackgroundColor="Transparent"
+                             x:Name="EmailImage" IsVisible="False"
+                             Clicked="EmailImage_OnClicked" />
+
+            </Grid>
+        </ScrollView>
+
+    </RefreshView>
+
+</ContentPage>

@@ -26,7 +26,7 @@ namespace WorkPlanner.Pages
             DisplayAlert(AppResources.FailedLoginAlertTitle, message, "Ok");
 
         private async void ContextOnOnSuccessfulLogin(object sender, EventArgs e) =>
-            await Navigation.PushModalAsync(new MainTabbedPage());
+            await Navigation.PushAsync(new MainTabbedPage());
 
         private void CheckCorrectDataEntered(object sender, EventArgs e)
         {

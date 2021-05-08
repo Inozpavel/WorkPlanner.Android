@@ -3,6 +3,18 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="WorkPlanner.Pages.MainTabbedPage"
-            BarBackgroundColor="Transparent"
-            BarTextColor="Black">
+            xmlns:pages="clr-namespace:WorkPlanner.Pages;assembly=WorkPlanner"
+            xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom">
+
+    <pages:RoomsPage IconImageSource="tasks.png"
+                     Title="{x:Static resources:AppResources.RoomsPageTitle}" />
+
+    <pages:ProfilePage IconImageSource="profile.png"
+                       Title="{x:Static resources:AppResources.ProfilePageTitle}" />
+
+    <pages:SettingsPage IconImageSource="settings.png"
+                        Title="{x:Static resources:AppResources.SettingsPageTitle}" />
+
 </TabbedPage>

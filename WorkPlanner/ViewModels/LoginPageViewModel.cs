@@ -26,7 +26,7 @@ namespace WorkPlanner.ViewModels
 
         public string Login { get; set; }
 
-        public bool ShouldRememberUser { get; set; }
+        public bool ShouldRememberUser { get; set; } = true;
 
         public string Password
         {
@@ -59,7 +59,8 @@ namespace WorkPlanner.ViewModels
 
             if (result.IsSuccessStatusCode)
             {
-                var response = JObject.Parse(await result.Content.ReadAsStringAsync())
+                var content = await result.Content.ReadAsStringAsync();
+                var response = JObject.Parse(content)
                     .ToObject<Dictionary<string, string>>();
 
                 string accessToken = response["access_token"];
@@ -80,7 +81,6 @@ namespace WorkPlanner.ViewModels
                 {
                     SecureStorage.RemoveAll();
                 }
-                
 
                 OnSuccessfulLogin?.Invoke(this, EventArgs.Empty);
                 return;
