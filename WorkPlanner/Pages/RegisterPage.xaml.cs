@@ -14,11 +14,13 @@ namespace WorkPlanner.Pages
         public RegisterPage()
         {
             InitializeComponent();
-            var context = new RegisterPageViewModel();
-            BindingContext = context;
-            context.OnSendingDataStarted += ContextOnOnSendingDataStarted;
-            context.OnRegistrationFailed += ContextOnOnRegistrationFailed;
-            context.OnRegistrationSuccess += ContextOnOnRegistrationSuccess;
+            var viewModel = new RegisterPageViewModel();
+            BindingContext = viewModel;
+            viewModel.OnSendingDataStarted += ContextOnOnSendingDataStarted;
+            viewModel.OnRegistrationFailed += ContextOnOnRegistrationFailed;
+            viewModel.OnRegistrationSuccess += ContextOnOnRegistrationSuccess;
+
+            ServerHelper.HandleConnectionFailed(this, viewModel);
         }
 
         private void ContextOnOnSendingDataStarted(object sender, EventArgs e)

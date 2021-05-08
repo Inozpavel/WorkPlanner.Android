@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using WorkPlanner.Resources;
+using WorkPlanner.ViewModels;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace WorkPlanner
 {
@@ -13,6 +18,15 @@ namespace WorkPlanner
         {
             Timeout = TimeSpan.FromSeconds(4)
         };
+
+        public static async Task<HttpClient> GetClientWithToken()
+        {
+            var client = GetClient();
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", await SecureStorage.GetAsync("accessToken"));
+            return client;
+        }
+
 
         public static async Task<string> SerializeObjectAsync<T>(T @object)
         {
@@ -25,7 +39,7 @@ namespace WorkPlanner
         }
 
 
-        public static Action HandleFailedConnectToServer(Func<Task> action, Action onError)
+        public static Action DecorateFailedConnectToServer(Func<Task> action, Action onError)
         {
             return async () =>
             {
@@ -43,6 +57,12 @@ namespace WorkPlanner
                     else throw;
                 }
             };
+        }
+
+        public static void HandleConnectionFailed(ContentPage page, BaseViewModel viewModel)
+        {
+            viewModel.ConnectionFailed += (_, _) =>
+                page.DisplayAlert(AppResources.Error, AppResources.ConnectionFailed, "Ok");
         }
     }
 }

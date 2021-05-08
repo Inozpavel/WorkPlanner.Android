@@ -19,9 +19,10 @@ namespace WorkPlanner.Pages
 
             _viewModel.SuccessfulUpdate += ViewModelOnSuccessfulUpdate;
             _viewModel.FailedUpdate += ViewModelOnFailedUpdate;
-            _viewModel.ConnectionFailed += ViewModelOnConnectionFailed;
             _viewModel.SuccessfulEmailResent += ViewModelOnSuccessfulEmailResent;
             _viewModel.FailedEmailResent += ViewModelOnFailedEmailResent;
+
+            ServerHelper.HandleConnectionFailed(this, _viewModel);
         }
 
         private async void ViewModelOnFailedUpdate(object sender, EventArgs e)
@@ -32,9 +33,6 @@ namespace WorkPlanner.Pages
 
         private async void ViewModelOnFailedEmailResent(object sender, EventArgs e) =>
             await DisplayAlert(AppResources.Error, AppResources.EmailResentFailed, "Ok");
-
-        private async void ViewModelOnConnectionFailed(object sender, EventArgs e) =>
-            await DisplayAlert(AppResources.Error, AppResources.ConnectionFailed, "Ok");
 
         private async void ViewModelOnSuccessfulEmailResent(object sender, EventArgs e) =>
             await DisplayAlert(AppResources.ActionCompleted, AppResources.EmailResentSuccess, "Ok");

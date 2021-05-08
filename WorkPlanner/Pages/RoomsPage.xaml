@@ -2,12 +2,44 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkPlanner.Pages.RoomsPage">
+             x:Class="WorkPlanner.Pages.RoomsPage"
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner">
+
+    <ContentPage.BindingContext>
+        <viewModels:RoomPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="add.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="MenuItem_OnClicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <RefreshView x:Name="RoomsRefreshView"
+                     Command="{Binding UpdateRoomsCommand}">
+            <ListView SeparatorVisibility="Default"
+                      SeparatorColor="Purple" ItemsSource="{Binding Rooms}">
+
+                <ListView.Header>
+                    <Grid>
+                        <Label Text="{x:Static resources:AppResources.AvailableRooms}" />
+                    </Grid>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <TextCell
+                            TextColor="Black"
+                            Text="{Binding RoomName}"
+                            Detail="{Binding RoomDescription}" />
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

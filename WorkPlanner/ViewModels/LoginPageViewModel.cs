@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json.Linq;
@@ -12,15 +10,12 @@ using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
-    public sealed class LoginPageViewModel : INotifyPropertyChanged
+    public sealed class LoginPageViewModel : BaseViewModel
     {
         private string _password;
 
-        public LoginPageViewModel()
-        {
-            LoginCommand = new Command(ServerHelper.HandleFailedConnectToServer(SendLoginData,
-                () => OnFailedLogin?.Invoke(this, AppResources.ConnectionFailed)));
-        }
+        public LoginPageViewModel() => LoginCommand =
+            new Command(ServerHelper.DecorateFailedConnectToServer(SendLoginData, OnConnectionFailed));
 
         public ICommand LoginCommand { get; }
 
@@ -37,8 +32,6 @@ namespace WorkPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public event EventHandler OnSuccessfulLogin;
 
@@ -59,7 +52,7 @@ namespace WorkPlanner.ViewModels
 
             if (result.IsSuccessStatusCode)
             {
-                var content = await result.Content.ReadAsStringAsync();
+                string content = await result.Content.ReadAsStringAsync();
                 var response = JObject.Parse(content)
                     .ToObject<Dictionary<string, string>>();
 
@@ -88,8 +81,5 @@ namespace WorkPlanner.ViewModels
 
             OnFailedLogin?.Invoke(this, AppResources.IncorrectLoginData);
         }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

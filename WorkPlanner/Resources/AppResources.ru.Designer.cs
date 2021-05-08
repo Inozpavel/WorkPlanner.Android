@@ -70,6 +70,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Доступные вам комнаты:.
+        /// </summary>
+        internal static string AvailableRooms {
+            get {
+                return ResourceManager.GetString("AvailableRooms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не получилось связаться с сервером, попробуйте позже.
         /// </summary>
         internal static string ConnectionFailed {

@@ -123,4 +123,7 @@
     <data name="UpdateFailed" xml:space="preserve">
         <value>Не получилось обновить информацию, попробуйте позже!</value>
     </data>
+    <data name="AvailableRooms" xml:space="preserve">
+        <value>Доступные вам комнаты:</value>
+    </data>
 </root>

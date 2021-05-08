@@ -1,15 +1,11 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
-    public sealed class ProfilePageViewModel : INotifyPropertyChanged
+    public sealed class ProfilePageViewModel : BaseViewModel
     {
         private string _email;
 
@@ -25,13 +21,13 @@ namespace WorkPlanner.ViewModels
 
         public ProfilePageViewModel()
         {
-            UpdateProfileCommand = new Command(ServerHelper.HandleFailedConnectToServer(UpdateProfileData, () =>
+            UpdateProfileCommand = new Command(ServerHelper.DecorateFailedConnectToServer(UpdateProfileData, () =>
             {
                 OnConnectionFailed();
                 OnFailedUpdate();
             }));
             ResendConfirmationMailCommand = new Command(
-                ServerHelper.HandleFailedConnectToServer(ResendConfirmationMail, OnConnectionFailed));
+                ServerHelper.DecorateFailedConnectToServer(ResendConfirmationMail, OnConnectionFailed));
         }
 
         [JsonProperty("first_name")]
@@ -102,10 +98,6 @@ namespace WorkPlanner.ViewModels
 
         public Command ResendConfirmationMailCommand { get; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public event EventHandler ConnectionFailed;
-
         public event EventHandler SuccessfulUpdate;
 
         public event EventHandler FailedUpdate;
@@ -116,9 +108,7 @@ namespace WorkPlanner.ViewModels
 
         private async Task UpdateProfileData()
         {
-            var client = ServerHelper.GetClient();
-            client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", await SecureStorage.GetAsync("accessToken"));
+            var client = await ServerHelper.GetClientWithToken();
 
             var result = await client.GetAsync(Settings.ProfileDataUrl);
 
@@ -160,10 +150,5 @@ namespace WorkPlanner.ViewModels
         private void OnSuccessfulUpdate() => SuccessfulUpdate?.Invoke(this, EventArgs.Empty);
 
         private void OnFailedUpdate() => FailedUpdate?.Invoke(this, EventArgs.Empty);
-
-        private void OnConnectionFailed() => ConnectionFailed?.Invoke(this, EventArgs.Empty);
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

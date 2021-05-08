@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,20 +14,17 @@ using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
-    public sealed class RegisterPageViewModel : INotifyPropertyChanged
+    public sealed class RegisterPageViewModel : BaseViewModel
     {
         public RegisterPageViewModel()
         {
             Request = new RegisterUserRequest();
-            RegisterCommand = new Command(ServerHelper.HandleFailedConnectToServer(Register,
-                () => OnRegistrationFailed?.Invoke(this, AppResources.ConnectionFailed)));
+            RegisterCommand = new Command(ServerHelper.DecorateFailedConnectToServer(Register, OnConnectionFailed));
         }
 
         public ICommand RegisterCommand { get; }
 
         public RegisterUserRequest Request { get; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public event EventHandler<string> OnRegistrationFailed;
 
@@ -64,8 +59,5 @@ namespace WorkPlanner.ViewModels
                 }
             }
         }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

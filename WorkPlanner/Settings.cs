@@ -13,5 +13,11 @@
         public const string ProfileDataUrl = UrlBase + "identity/connect/userinfo";
 
         public const string ResendEmailUrl = AccountsUrlBase + "resend-confirmation-mail";
+
+        private const string RoomsUrlBase = UrlBase + "rooms-api/rooms";
+
+        private const string TasksUrlBase = UrlBase + "rooms-api/room";
+
+        public const string AllRoomsUrl = RoomsUrlBase;
     }
 }

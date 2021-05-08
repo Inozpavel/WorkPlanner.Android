@@ -16,10 +16,11 @@ namespace WorkPlanner.Pages
         public LoginPage()
         {
             InitializeComponent();
-            var context = new LoginPageViewModel();
-            BindingContext = context;
-            context.OnSuccessfulLogin += ContextOnOnSuccessfulLogin;
-            context.OnFailedLogin += ContextOnOnFailedLogin;
+            var viewModel = new LoginPageViewModel();
+            BindingContext = viewModel;
+            viewModel.OnSuccessfulLogin += ContextOnOnSuccessfulLogin;
+            viewModel.OnFailedLogin += ContextOnOnFailedLogin;
+            ServerHelper.HandleConnectionFailed(this, viewModel);
         }
 
         private void ContextOnOnFailedLogin(object sender, string message) =>
