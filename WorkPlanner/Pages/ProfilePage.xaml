@@ -11,7 +11,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Update"
+        <ToolbarItem IconImageSource="edit.png"
                      Order="Primary"
                      Priority="0" />
     </ContentPage.ToolbarItems>
