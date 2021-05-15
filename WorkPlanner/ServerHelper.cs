@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using WorkPlanner.Resources;
 using WorkPlanner.ViewModels;
@@ -16,7 +19,7 @@ namespace WorkPlanner
     {
         public static HttpClient GetClient() => new()
         {
-            Timeout = TimeSpan.FromSeconds(4)
+            Timeout = TimeSpan.FromSeconds(6)
         };
 
         public static async Task<HttpClient> GetClientWithToken()
@@ -25,6 +28,12 @@ namespace WorkPlanner
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", await SecureStorage.GetAsync("accessToken"));
             return client;
+        }
+
+        public static string GetErrorFromValidationResult(string validationResult)
+        {
+            var errors = JObject.Parse(validationResult)["errors"].ToObject<Dictionary<string, List<string>>>();
+            return errors.FirstOrDefault().Value.FirstOrDefault();
         }
 
 

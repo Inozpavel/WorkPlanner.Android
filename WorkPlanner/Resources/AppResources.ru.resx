@@ -121,9 +121,27 @@
         <value>Не получилось отправить письмо, попробуйте позже!</value>
     </data>
     <data name="UpdateFailed" xml:space="preserve">
-        <value>Не получилось обновить информацию, попробуйте позже!</value>
+        <value>Не получилось обновить информацию, попробуйте обновить попозже!</value>
     </data>
     <data name="AvailableRooms" xml:space="preserve">
         <value>Доступные вам комнаты:</value>
+    </data>
+    <data name="RoomName" xml:space="preserve">
+        <value>Название комнаты</value>
+    </data>
+    <data name="RoomDescription" xml:space="preserve">
+        <value>Описание комнаты</value>
+    </data>
+    <data name="Submit" xml:space="preserve">
+        <value>Подтвердить</value>
+    </data>
+    <data name="EnterRoomName" xml:space="preserve">
+        <value>Введите название комнаты</value>
+    </data>
+    <data name="EnterRoomDescription" xml:space="preserve">
+        <value>Введите описание комнаты</value>
+    </data>
+    <data name="ActionFailed" xml:space="preserve">
+        <value>не получилось выполнить действие!</value>
     </data>
 </root>

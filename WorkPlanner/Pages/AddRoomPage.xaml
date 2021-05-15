@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
+             x:Class="WorkPlanner.Pages.AddRoomPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:AddRoomPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0">
+                <Label Text="{x:Static resources:AppResources.RoomName}" />
+                <Entry MaxLength="30"
+                       Placeholder="{x:Static resources:AppResources.EnterRoomName}"
+                       Text="{Binding Request.RoomName}" />
+            </StackLayout>
+
+
+            <StackLayout Grid.Row="1">
+                <Label Text="{x:Static resources:AppResources.RoomDescription}" />
+                <Editor AutoSize="TextChanges"
+                        Placeholder="{x:Static resources:AppResources.EnterRoomDescription}"
+                        Text="{Binding Request.RoomDescription}" />
+            </StackLayout>
+
+            <Button Grid.Row="2"
+                    VerticalOptions="End"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{x:Static resources:AppResources.Submit}"
+                    Command="{Binding AddRoomCommand}" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

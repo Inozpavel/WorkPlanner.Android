@@ -19,5 +19,7 @@
         private const string TasksUrlBase = UrlBase + "rooms-api/room";
 
         public const string AllRoomsUrl = RoomsUrlBase;
+
+        public const string AddRoomUrl = RoomsUrlBase;
     }
 }

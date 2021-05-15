@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Newtonsoft.Json.Linq;
 using WorkPlanner.Requests;
 using WorkPlanner.Resources;
 using Xamarin.Essentials;
@@ -47,17 +44,13 @@ namespace WorkPlanner.ViewModels
                 new StringContent(data, Encoding.UTF8, "application/json"));
 
             if (result.StatusCode == HttpStatusCode.OK)
-                OnRegistrationSuccess?.Invoke(this, EventArgs.Empty);
-            else
             {
-                var errorBody = JObject.Parse(await result.Content.ReadAsStringAsync());
-                var errors = errorBody["errors"].ToObject<Dictionary<string, List<string>>>();
-                foreach (var keyValuePair in errors)
-                {
-                    OnRegistrationFailed?.Invoke(this, keyValuePair.Value.First());
-                    return;
-                }
+                OnRegistrationSuccess?.Invoke(this, EventArgs.Empty);
+                return;
             }
+
+            string errorBody = await result.Content.ReadAsStringAsync();
+            OnRegistrationFailed?.Invoke(this, ServerHelper.GetErrorFromValidationResult(errorBody));
         }
     }
 }

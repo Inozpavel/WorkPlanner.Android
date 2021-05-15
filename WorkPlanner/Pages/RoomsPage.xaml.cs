@@ -1,4 +1,5 @@
 ﻿using System;
+using WorkPlanner.Models;
 using WorkPlanner.Resources;
 using WorkPlanner.ViewModels;
 using Xamarin.Forms;
@@ -9,16 +10,17 @@ namespace WorkPlanner.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RoomsPage : ContentPage
     {
+        private readonly RoomPageViewModel _viewModel;
+
         public RoomsPage()
         {
-            RoomPageViewModel viewModel;
             InitializeComponent();
-            BindingContext = viewModel = new RoomPageViewModel();
+            BindingContext = _viewModel = new RoomPageViewModel();
 
-            viewModel.SuccessfulUpdate += (_, _) => { RoomsRefreshView.IsRefreshing = false; };
-            viewModel.FailedUpdate += ViewModelOnFailedUpdate;
-
-            ServerHelper.HandleConnectionFailed(this, viewModel);
+            _viewModel.SuccessfulUpdate += (_, _) => { RoomsRefreshView.IsRefreshing = false; };
+            _viewModel.FailedUpdate += ViewModelOnFailedUpdate;
+            _viewModel.UpdateRoomsCommand.Execute(this);
+            ServerHelper.HandleConnectionFailed(this, _viewModel);
         }
 
         private async void ViewModelOnFailedUpdate(object sender, EventArgs e)
@@ -27,6 +29,14 @@ namespace WorkPlanner.Pages
             await DisplayAlert(AppResources.Error, AppResources.UpdateFailed, "Ok");
         }
 
-        private void MenuItem_OnClicked(object sender, EventArgs e) => Navigation.PushModalAsync(new ContentPage());
+        private void MenuItem_OnClicked(object sender, EventArgs e) =>
+            Navigation.PushModalAsync(new AddRoomPage(_viewModel));
+
+        private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item is not Room selectedRoom)
+                return;
+            Navigation.PushAsync(new ContentPage());
+        }
     }
 }

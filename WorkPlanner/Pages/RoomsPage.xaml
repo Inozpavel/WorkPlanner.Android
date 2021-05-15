@@ -20,12 +20,16 @@
     <ContentPage.Content>
         <RefreshView x:Name="RoomsRefreshView"
                      Command="{Binding UpdateRoomsCommand}">
+
             <ListView SeparatorVisibility="Default"
-                      SeparatorColor="Purple" ItemsSource="{Binding Rooms}">
+                      SeparatorColor="Black"
+                      ItemsSource="{Binding Rooms}"
+                      ItemTapped="ListView_OnItemTapped">
 
                 <ListView.Header>
                     <Grid>
-                        <Label Text="{x:Static resources:AppResources.AvailableRooms}" />
+                        <Label Margin="10, 0, 0, 0" 
+                            Text="{x:Static resources:AppResources.AvailableRooms}" />
                     </Grid>
                 </ListView.Header>
 

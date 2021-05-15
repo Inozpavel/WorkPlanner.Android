@@ -126,4 +126,22 @@
     <data name="AvailableRooms" xml:space="preserve">
         <value>Rooms available for you:</value>
     </data>
+    <data name="RoomName" xml:space="preserve">
+        <value>Room name</value>
+    </data>
+    <data name="RoomDescription" xml:space="preserve">
+        <value>Room description</value>
+    </data>
+    <data name="Submit" xml:space="preserve">
+        <value>Submit</value>
+    </data>
+    <data name="EnterRoomName" xml:space="preserve">
+        <value>Enter room name</value>
+    </data>
+    <data name="EnterRoomDescription" xml:space="preserve">
+        <value>Enter room description</value>
+    </data>
+    <data name="ActionFailed" xml:space="preserve">
+        <value>Failed to complete the action!</value>
+    </data>
 </root>

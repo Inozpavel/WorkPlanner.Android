@@ -8,7 +8,7 @@ namespace WorkPlanner.Models
 
         public string RoomName { get; set; }
 
-        public string? RoomDescription { get; set; }
+        public string RoomDescription { get; set; }
 
         public DateTime CreationDate { get; set; }
     }
