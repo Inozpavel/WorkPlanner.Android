@@ -7,14 +7,14 @@
              xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner">
 
     <ContentPage.BindingContext>
-        <viewModels:RoomPageViewModel />
+        <viewModels:RoomsPageViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="add.png"
                      Order="Primary"
                      Priority="0"
-                     Clicked="MenuItem_OnClicked" />
+                     Clicked="AddRoomOnClicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -28,8 +28,8 @@
 
                 <ListView.Header>
                     <Grid>
-                        <Label Margin="10, 0, 0, 0" 
-                            Text="{x:Static resources:AppResources.AvailableRooms}" />
+                        <Label Margin="10, 0, 0, 0"
+                               Text="{x:Static resources:AppResources.AvailableRooms}" />
                     </Grid>
                 </ListView.Header>
 

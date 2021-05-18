@@ -144,4 +144,58 @@
     <data name="ActionFailed" xml:space="preserve">
         <value>Failed to complete the action!</value>
     </data>
+    <data name="DeadlineError" xml:space="preserve">
+        <value>Deadline cannot be less than the current date</value>
+    </data>
+    <data name="TimeEnded" xml:space="preserve">
+        <value>Time is over!</value>
+    </data>
+    <data name="TimeToEnd" xml:space="preserve">
+        <value>Time to end:</value>
+    </data>
+    <data name="DeadlineTime" xml:space="preserve">
+        <value>Deadline time</value>
+    </data>
+    <data name="TimeOfCreation" xml:space="preserve">
+        <value>Time of creation</value>
+    </data>
+    <data name="CreatorInformation" xml:space="preserve">
+        <value>Information about the task creator</value>
+    </data>
+    <data name="Warning" xml:space="preserve">
+        <value>Warning</value>
+    </data>
+    <data name="IrrevocableAction" xml:space="preserve">
+        <value>This action cannot be undone! Are you sure?</value>
+    </data>
+    <data name="SelectAnAction" xml:space="preserve">
+        <value>Select an action</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="CreateNewRoom" xml:space="preserve">
+        <value>Create a new room</value>
+    </data>
+    <data name="JoinAnExistingRoom" xml:space="preserve">
+        <value>Join an existing room</value>
+    </data>
+    <data name="JoiningAnExistingRoom" xml:space="preserve">
+        <value>Joining an existing room</value>
+    </data>
+    <data name="EnterRoomId" xml:space="preserve">
+        <value>Enter room id</value>
+    </data>
+    <data name="WrongId" xml:space="preserve">
+        <value>Wrong id!</value>
+    </data>
+    <data name="CopyRoomId" xml:space="preserve">
+        <value>Copy room id</value>
+    </data>
+    <data name="DeleteRoom" xml:space="preserve">
+        <value>Delete room</value>
+    </data>
+    <data name="UpdateRoom" xml:space="preserve">
+        <value>Change room description</value>
+    </data>
 </root>

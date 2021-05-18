@@ -144,4 +144,58 @@
     <data name="ActionFailed" xml:space="preserve">
         <value>не получилось выполнить действие!</value>
     </data>
+    <data name="DeadlineError" xml:space="preserve">
+        <value>Срок сдачи не может быть меньше текущей даты</value>
+    </data>
+    <data name="TimeEnded" xml:space="preserve">
+        <value>Время вышло!</value>
+    </data>
+    <data name="TimeToEnd" xml:space="preserve">
+        <value>Время до конца:</value>
+    </data>
+    <data name="DeadlineTime" xml:space="preserve">
+        <value>Крайний срок</value>
+    </data>
+    <data name="TimeOfCreation" xml:space="preserve">
+        <value>Время создания</value>
+    </data>
+    <data name="CreatorInformation" xml:space="preserve">
+        <value>Информация о создателе задачи</value>
+    </data>
+    <data name="IrrevocableAction" xml:space="preserve">
+        <value>Это действие не может быть отменено! Вы уверены?</value>
+    </data>
+    <data name="SelectAnAction" xml:space="preserve">
+        <value>Выберите действие</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Отменить</value>
+    </data>
+    <data name="JoinAnExistingRoom" xml:space="preserve">
+        <value>Присоединиться к существующей комнате</value>
+    </data>
+    <data name="CreateNewRoom" xml:space="preserve">
+        <value>Создать новую комнату</value>
+    </data>
+    <data name="JoiningAnExistingRoom" xml:space="preserve">
+        <value>Присоединение к существующей комнате</value>
+    </data>
+    <data name="EnterRoomId" xml:space="preserve">
+        <value>Введите id комнаты</value>
+    </data>
+    <data name="WrongId" xml:space="preserve">
+        <value>Неправильный id!</value>
+    </data>
+    <data name="Warning" xml:space="preserve">
+        <value>Предупреждение</value>
+    </data>
+    <data name="CopyRoomId" xml:space="preserve">
+        <value>Спопировать id комнаты</value>
+    </data>
+    <data name="DeleteRoom" xml:space="preserve">
+        <value>Удалить комнату</value>
+    </data>
+    <data name="UpdateRoom" xml:space="preserve">
+        <value>Изменить описание комнаты</value>
+    </data>
 </root>

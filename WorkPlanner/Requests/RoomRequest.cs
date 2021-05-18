@@ -4,6 +4,6 @@
     {
         public string RoomName { get; set; }
 
-        public string? RoomDescription { get; set; }
+        public string RoomDescription { get; set; }
     }
 }

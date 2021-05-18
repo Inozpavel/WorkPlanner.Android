@@ -32,12 +32,19 @@ namespace WorkPlanner
 
         public static string GetErrorFromValidationResult(string validationResult)
         {
-            var errors = JObject.Parse(validationResult)["errors"].ToObject<Dictionary<string, List<string>>>();
-            return errors.FirstOrDefault().Value.FirstOrDefault();
+            try
+            {
+                var errors = JObject.Parse(validationResult)["errors"].ToObject<Dictionary<string, List<string>>>();
+                return errors.FirstOrDefault().Value.FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                return "Failed to get error!";
+            }
         }
 
 
-        public static async Task<string> SerializeObjectAsync<T>(T @object)
+        public static async Task<string> SerializeAsync<T>(T @object)
         {
             string data = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(@object,
                 new JsonSerializerSettings
@@ -45,6 +52,19 @@ namespace WorkPlanner
                     ContractResolver = new CamelCasePropertyNamesContractResolver()
                 }));
             return data;
+        }
+
+        public static async Task<T> DeserializeAsync<T>(string content) where T : class
+        {
+            try
+            {
+                var data = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(content));
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
 

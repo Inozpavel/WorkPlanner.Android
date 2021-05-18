@@ -38,7 +38,7 @@ namespace WorkPlanner.ViewModels
                 return;
             }
 
-            string data = await ServerHelper.SerializeObjectAsync(Request);
+            string data = await ServerHelper.SerializeAsync(Request);
 
             var result = await ServerHelper.GetClient().PostAsync(Settings.RegisterUrl,
                 new StringContent(data, Encoding.UTF8, "application/json"));

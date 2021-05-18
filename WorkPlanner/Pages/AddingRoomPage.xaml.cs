@@ -6,17 +6,17 @@ using Xamarin.Forms.Xaml;
 namespace WorkPlanner.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddRoomPage : ContentPage
+    public partial class AddingRoomPage : ContentPage
     {
-        public AddRoomPage(RoomPageViewModel roomPageViewModel)
+        public AddingRoomPage(RoomsPageViewModel roomsPageViewModel)
         {
             InitializeComponent();
-            AddRoomPageViewModel pageViewModel = new();
+            AdditionRoomPageViewModel pageViewModel = new();
             BindingContext = pageViewModel;
 
             pageViewModel.SuccessfulAddition += (_, request) =>
             {
-                roomPageViewModel.Rooms.Add(request);
+                roomsPageViewModel.Rooms.Add(request);
                 Navigation.PopModalAsync();
             };
 

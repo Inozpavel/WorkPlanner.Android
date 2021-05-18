@@ -88,11 +88,74 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отменить.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не получилось связаться с сервером, попробуйте позже.
         /// </summary>
         internal static string ConnectionFailed {
             get {
                 return ResourceManager.GetString("ConnectionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Спопировать id комнаты.
+        /// </summary>
+        internal static string CopyRoomId {
+            get {
+                return ResourceManager.GetString("CopyRoomId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создать новую комнату.
+        /// </summary>
+        internal static string CreateNewRoom {
+            get {
+                return ResourceManager.GetString("CreateNewRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Информация о создателе задачи.
+        /// </summary>
+        internal static string CreatorInformation {
+            get {
+                return ResourceManager.GetString("CreatorInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Срок сдачи не может быть меньше текущей даты.
+        /// </summary>
+        internal static string DeadlineError {
+            get {
+                return ResourceManager.GetString("DeadlineError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Крайний срок.
+        /// </summary>
+        internal static string DeadlineTime {
+            get {
+                return ResourceManager.GetString("DeadlineTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить комнату.
+        /// </summary>
+        internal static string DeleteRoom {
+            get {
+                return ResourceManager.GetString("DeleteRoom", resourceCulture);
             }
         }
         
@@ -160,6 +223,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите id комнаты.
+        /// </summary>
+        internal static string EnterRoomId {
+            get {
+                return ResourceManager.GetString("EnterRoomId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Введите название комнаты.
         /// </summary>
         internal static string EnterRoomName {
@@ -219,6 +291,33 @@ namespace WorkPlanner.Resources {
         internal static string InternetIsMissing {
             get {
                 return ResourceManager.GetString("InternetIsMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Это действие не может быть отменено! Вы уверены?.
+        /// </summary>
+        internal static string IrrevocableAction {
+            get {
+                return ResourceManager.GetString("IrrevocableAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Присоединиться к существующей комнате.
+        /// </summary>
+        internal static string JoinAnExistingRoom {
+            get {
+                return ResourceManager.GetString("JoinAnExistingRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Присоединение к существующей комнате.
+        /// </summary>
+        internal static string JoiningAnExistingRoom {
+            get {
+                return ResourceManager.GetString("JoiningAnExistingRoom", resourceCulture);
             }
         }
         
@@ -340,6 +439,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Выберите действие.
+        /// </summary>
+        internal static string SelectAnAction {
+            get {
+                return ResourceManager.GetString("SelectAnAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         internal static string SettingsPageTitle {
@@ -403,11 +511,65 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Время вышло!.
+        /// </summary>
+        internal static string TimeEnded {
+            get {
+                return ResourceManager.GetString("TimeEnded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Время создания.
+        /// </summary>
+        internal static string TimeOfCreation {
+            get {
+                return ResourceManager.GetString("TimeOfCreation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Время до конца:.
+        /// </summary>
+        internal static string TimeToEnd {
+            get {
+                return ResourceManager.GetString("TimeToEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не получилось обновить информацию, попробуйте обновить попозже!.
         /// </summary>
         internal static string UpdateFailed {
             get {
                 return ResourceManager.GetString("UpdateFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменить описание комнаты.
+        /// </summary>
+        internal static string UpdateRoom {
+            get {
+                return ResourceManager.GetString("UpdateRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Предупреждение.
+        /// </summary>
+        internal static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неправильный id!.
+        /// </summary>
+        internal static string WrongId {
+            get {
+                return ResourceManager.GetString("WrongId", resourceCulture);
             }
         }
         
