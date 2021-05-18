@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkPlanner.Pages.TaskDetailsPage"
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner">
+
+    <ContentPage.BindingContext>
+        <viewModels:TaskDetailsPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   TextColor="Black"
+                   Margin="0, 20, 0, 0"
+                   HorizontalOptions="Center"
+                   Text="{Binding RoomTask.TaskName}" />
+
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Margin="10, 0, 0, 0"
+                   Text="{Binding RoomTask.TaskContent, StringFormat='Task content: {0}'}" />
+
+            <Label Grid.Column="0"
+                   Grid.Row="2"
+                   Grid.ColumnSpan="2"
+                   Margin="10, 0, 0, 0"
+                   Text="{Binding RoomTask.Details, StringFormat='Details: {0}'}" />
+
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   HorizontalOptions="Center"
+                   Margin="0, 20, 0 , 0"
+                   Text="{x:Static resources:AppResources.TimeOfCreation}" />
+
+            <Label Grid.Row="4"
+                   Grid.Column="0"
+                   HorizontalOptions="Center"
+                   Text="{Binding RoomTask.TaskCreationTime, StringFormat='{}{0: dd/MM/yyyy HH:mm:ss}'}" />
+
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"
+                   Margin="0, 20, 0 , 0"
+                   Text="{x:Static resources:AppResources.DeadlineTime}" />
+
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"
+                   Text="{Binding RoomTask.DeadlineTime, StringFormat='{}{0: dd/MM/yyyy HH:mm:ss}'}" />
+
+            <Label Grid.Row="5"
+                   Grid.Column="0"
+                   HorizontalOptions="Center"
+                   Margin="10, 20, 0, 0"
+                   Text="{x:Static resources:AppResources.TimeToEnd}" />
+
+            <Label Grid.Row="5"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"
+                   Margin="0, 20, 0 , 0"
+                   x:Name="DeadlineTimerLabel" />
+
+            <Button Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    VerticalOptions="End"
+                    TextTransform="None"
+                    Text="{x:Static resources:AppResources.CreatorInformation}" />
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

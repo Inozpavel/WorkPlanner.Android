@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkPlanner.Pages.TasksPage"
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner">
+
+    <ContentPage.BindingContext>
+        <viewModels:TasksPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem IconImageSource="add.png"
+                     Clicked="AddTaskOnClicked" />
+
+        <ToolbarItem Priority="1"
+                     Text="{x:Static resources:AppResources.UpdateRoom}"
+                     Order="Secondary" />
+
+        <ToolbarItem Priority="2"
+                     Text="{x:Static resources:AppResources.CopyRoomId}"
+                     Order="Secondary"
+                     Clicked="CopyRoomIdOnClicked" />
+
+        <ToolbarItem Priority="3"
+                     Text="{x:Static resources:AppResources.DeleteRoom}"
+                     Order="Secondary"
+                     Clicked="DeleteRoomOnClicked" />
+
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Row="0" Padding="3" BorderColor="Black">
+                <StackLayout Orientation="Vertical">
+
+                    <Label Text="{Binding Room.RoomName}"
+                           HorizontalOptions="Center"
+                           TextColor="Black" />
+
+                    <Label Text="{Binding Room.RoomDescription}" />
+                    <Label Text="{Binding Room.RoomId, StringFormat='Id for join: {0}'}" />
+
+                </StackLayout>
+            </Frame>
+
+            <RefreshView Grid.Row="1"
+                         x:Name="TasksRefreshView"
+                         Command="{Binding LoadTasksCommand}">
+
+                <ListView ItemsSource="{Binding Tasks}"
+                          ItemTapped="ListView_OnItemTapped"
+                          RowHeight="50">
+
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0"
+                                               Grid.Row="0"
+                                               Text="{Binding TaskName}" />
+
+                                        <StackLayout Grid.Row="1"
+                                                     Grid.Column="0"
+                                                     Orientation="Horizontal">
+                                            <Label Text="Created" />
+                                            <Label
+                                                Text="{Binding Path=TaskCreationTime, StringFormat='{}{0: dd/MM/yyyy HH:mm:ss}'}" />
+                                        </StackLayout>
+
+                                        <StackLayout Grid.Row="1"
+                                                     Grid.Column="1"
+                                                     Orientation="Horizontal">
+                                            <Label Text="Deadline" />
+                                            <Label
+                                                Text="{Binding DeadlineTime, StringFormat='{}{0: dd/MM/yyyy HH:mm:ss}'}" />
+                                        </StackLayout>
+
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </RefreshView>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
