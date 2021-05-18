@@ -268,6 +268,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не получилось получить информацию об ошибке!.
+        /// </summary>
+        internal static string FailedToGetError {
+            get {
+                return ResourceManager.GetString("FailedToGetError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Имя.
         /// </summary>
         internal static string FirstName {

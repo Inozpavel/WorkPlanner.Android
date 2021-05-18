@@ -50,6 +50,8 @@ namespace WorkPlanner.Pages
                     return;
                 if (!Guid.TryParse(id, out var guidId))
                     await DisplayAlert(AppResources.Error, AppResources.WrongId, "Ok");
+
+                _viewModel.JoinExistingRoomCommand.Execute(guidId);
             }
         }
     }

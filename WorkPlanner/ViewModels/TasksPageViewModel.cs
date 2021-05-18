@@ -75,7 +75,7 @@ namespace WorkPlanner.ViewModels
                 return;
             }
 
-            OnFailedDeletion(ServerHelper.GetErrorFromValidationResult(resultContent));
+            OnFailedDeletion(ServerHelper.GetErrorFromResponse(resultContent));
         }
     }
 }

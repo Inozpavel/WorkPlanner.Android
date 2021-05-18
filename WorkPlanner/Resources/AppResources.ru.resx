@@ -198,4 +198,7 @@
     <data name="UpdateRoom" xml:space="preserve">
         <value>Изменить описание комнаты</value>
     </data>
+    <data name="FailedToGetError" xml:space="preserve">
+        <value>Не получилось получить информацию об ошибке!</value>
+    </data>
 </root>

@@ -30,16 +30,25 @@ namespace WorkPlanner
             return client;
         }
 
-        public static string GetErrorFromValidationResult(string validationResult)
+        public static string GetErrorFromResponse(string validationResult)
         {
             try
             {
-                var errors = JObject.Parse(validationResult)["errors"].ToObject<Dictionary<string, List<string>>>();
-                return errors.FirstOrDefault().Value.FirstOrDefault();
+                var jsonResponse = JObject.Parse(validationResult);
+                if (jsonResponse.GetValue("errors") != null)
+                {
+                    return JObject.Parse(validationResult)["errors"].ToObject<Dictionary<string, List<string>>>()
+                        .FirstOrDefault().Value.FirstOrDefault();
+                }
+
+                if (jsonResponse.GetValue("detail") != null)
+                    return jsonResponse["detail"].Value<string>();
+
+                throw new Exception();
             }
             catch (Exception)
             {
-                return "Failed to get error!";
+                return AppResources.FailedToGetError;
             }
         }
 
@@ -78,12 +87,22 @@ namespace WorkPlanner
                 }
                 catch (Exception e)
                 {
-                    if (e.Message == "Socket closed" || e.GetType() == typeof(OperationCanceledException) ||
-                        e.GetType() == typeof(WebException))
-                    {
-                        onError?.Invoke();
-                    }
-                    else throw;
+                    Handle(e, onError);
+                }
+            };
+        }
+
+        public static Action<object> DecorateFailedConnectToServer(Func<object, Task> action, Action onError)
+        {
+            return async parameter =>
+            {
+                try
+                {
+                    await action(parameter);
+                }
+                catch (Exception e)
+                {
+                    Handle(e, onError);
                 }
             };
         }
@@ -92,6 +111,16 @@ namespace WorkPlanner
         {
             viewModel.ConnectionFailed += (_, _) =>
                 page.DisplayAlert(AppResources.Error, AppResources.ConnectionFailed, "Ok");
+        }
+
+        private static void Handle(Exception e, Action onError)
+        {
+            if (e.Message == "Socket closed" || e.GetType() == typeof(OperationCanceledException) ||
+                e.GetType() == typeof(WebException))
+            {
+                onError?.Invoke();
+            }
+            else throw e;
         }
     }
 }

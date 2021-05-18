@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -13,13 +14,13 @@ namespace WorkPlanner.ViewModels
         public RoomsPageViewModel()
         {
             UpdateRoomsCommand =
-                new Command(ServerHelper.DecorateFailedConnectToServer(Test, OnConnectionFailed));
-
+                new Command(ServerHelper.DecorateFailedConnectToServer(UpdateRooms, OnConnectionFailed));
+            JoinExistingRoomCommand = new Command(ServerHelper.DecorateFailedConnectToServer(JoinRoom, OnConnectionFailed));
         }
 
-        public Command UpdateRoomsCommand { get; set; }
+        public Command UpdateRoomsCommand { get; }
 
-        public Command JoinExistingRoomCommand { get; set; }
+        public Command JoinExistingRoomCommand { get; }
 
         public ObservableCollection<Room> Rooms { get; set; } = new();
 
@@ -27,11 +28,9 @@ namespace WorkPlanner.ViewModels
 
         public event EventHandler FailedUpdate;
 
-        public event EventHandler<Room> SuccessfulJoin;
-
         public event EventHandler<string> FailedJoin;
 
-        private async Task Test()
+        private async Task UpdateRooms()
         {
             var client = await ServerHelper.GetClientWithToken();
             var result = await client.GetAsync(Settings.AllRoomsUrl);
@@ -39,11 +38,13 @@ namespace WorkPlanner.ViewModels
             if (result.IsSuccessStatusCode)
             {
                 string content = await result.Content.ReadAsStringAsync();
-                Rooms.Clear();
-                var rooms = JsonConvert.DeserializeObject<ObservableCollection<Room>>(content);
-                foreach (var room in rooms)
+                var rooms = JsonConvert.DeserializeObject<List<Room>>(content);
+
+                if (rooms is {Count: > 0})
                 {
-                    Rooms.Add(room);
+                    Rooms.Clear();
+                    foreach (var room in rooms)
+                        Rooms.Add(room);
                 }
 
                 SuccessfulUpdate?.Invoke(this, EventArgs.Empty);
@@ -53,14 +54,25 @@ namespace WorkPlanner.ViewModels
             FailedUpdate?.Invoke(this, EventArgs.Empty);
         }
 
-        private async Task Join(object parameter)
+        private async Task JoinRoom(object parameter)
         {
-            if (parameter is not Guid guid)
+            if (parameter is not Guid roomId)
                 OnFailedJoin(AppResources.WrongId);
+
+            var client = await ServerHelper.GetClientWithToken();
+
+            var result = await client.GetAsync(string.Format(Settings.JoiningRoomUrl, roomId));
+
+            string resultContent = await result.Content.ReadAsStringAsync();
+            if (result.IsSuccessStatusCode)
+            {
+                var room = await ServerHelper.DeserializeAsync<Room>(resultContent);
+                Rooms.Insert(0, room);
+            }
+
+            OnFailedJoin(AppResources.WrongId);
         }
 
         private void OnFailedJoin(string message) => FailedJoin?.Invoke(this, message);
-        
-        private void OnSuccessfulJoin(Room room) => SuccessfulJoin?.Invoke(this, room);
     }
 }

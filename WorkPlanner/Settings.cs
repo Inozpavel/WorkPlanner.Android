@@ -27,5 +27,7 @@
         public const string AllTasksUrl = TasksUrlBase;
 
         public const string AddTaskUrl = TasksUrlBase;
+
+        public const string JoiningRoomUrl = RoomsUrlBase + "/join/{0}";
     }
 }

@@ -50,7 +50,7 @@ namespace WorkPlanner.ViewModels
                 return;
             }
 
-            OnFailedAddition(ServerHelper.GetErrorFromValidationResult(resultContent));
+            OnFailedAddition(ServerHelper.GetErrorFromResponse(resultContent));
         }
     }
 }

@@ -50,7 +50,7 @@ namespace WorkPlanner.ViewModels
             }
 
             string errorBody = await result.Content.ReadAsStringAsync();
-            OnRegistrationFailed?.Invoke(this, ServerHelper.GetErrorFromValidationResult(errorBody));
+            OnRegistrationFailed?.Invoke(this, ServerHelper.GetErrorFromResponse(errorBody));
         }
     }
 }

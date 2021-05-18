@@ -198,4 +198,7 @@
     <data name="UpdateRoom" xml:space="preserve">
         <value>Change room description</value>
     </data>
+    <data name="FailedToGetError" xml:space="preserve">
+        <value>Failed to get error!</value>
+    </data>
 </root>
