@@ -9,7 +9,8 @@ namespace WorkPlanner
     {
         public App()
         {
-            AppResources.Culture = CultureInfo.CurrentUICulture;
+            // AppResources.Culture = CultureInfo.CurrentUICulture;
+            AppResources.Culture = new CultureInfo("ru");
             InitializeComponent();
             MainPage = new NavigationPage(new LoginPage());
         }

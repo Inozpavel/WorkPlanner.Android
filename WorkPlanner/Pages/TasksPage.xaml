@@ -4,7 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkPlanner.Pages.TasksPage"
              xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
-             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner">
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
+             Title="{Binding Room.RoomName}"
+             x:Name="TasksContentPage">
 
     <ContentPage.BindingContext>
         <viewModels:TasksPageViewModel />
@@ -12,103 +14,86 @@
 
     <ContentPage.ToolbarItems>
 
-        <ToolbarItem IconImageSource="add.png"
-                     Clicked="AddTaskOnClicked" />
-
         <ToolbarItem Priority="1"
-                     Text="{x:Static resources:AppResources.UpdateRoom}"
-                     Order="Secondary" />
+                     IconImageSource="information.png"
+                     Order="Primary"
+                     Clicked="InformationOnClicked" />
 
         <ToolbarItem Priority="2"
-                     Text="{x:Static resources:AppResources.CopyRoomId}"
-                     Order="Secondary"
-                     Clicked="CopyRoomIdOnClicked" />
+                     IconImageSource="add.png"
+                     Order="Primary"
+                     Clicked="AddTaskOnClicked" />
 
-        <ToolbarItem Priority="3"
-                     Text="{x:Static resources:AppResources.DeleteRoom}"
+        <ToolbarItem Priority="2"
                      Order="Secondary"
-                     Clicked="DeleteRoomOnClicked" />
+                     Clicked="CopyRoomIdOnClicked"
+                     Text="{x:Static resources:AppResources.CopyRoomId}" />
 
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <RefreshView Grid.Row="1"
+                     x:Name="TasksRefreshView"
+                     Command="{Binding LoadTasksCommand}">
 
-            <Frame Grid.Row="0" Padding="3" BorderColor="Black">
-                <StackLayout Orientation="Vertical">
+            <CollectionView x:Name="TaskCollectionView"
+                            ItemsSource="{Binding RoomTasks}"
+                            SelectionChanged="TasksCollectionViewOnItemSelected"
+                            SelectionMode="Single"
+                            EmptyView="{x:Static resources:AppResources.NoTasks}"
+                            HeightRequest="100">
 
-                    <Label Text="{Binding Room.RoomName}"
-                           HorizontalOptions="Center"
-                           TextColor="Black" />
+                <CollectionView.ItemTemplate>
 
-                    <Label Text="{Binding Room.RoomDescription}" />
-                    <Label Text="{Binding Room.RoomId, StringFormat='Id for join: {0}'}" />
+                    <DataTemplate>
+                        <Grid>
 
-                </StackLayout>
-            </Frame>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
 
-            <RefreshView Grid.Row="1"
-                         x:Name="TasksRefreshView"
-                         Command="{Binding LoadTasksCommand}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                <ListView ItemsSource="{Binding Tasks}"
-                          ItemTapped="ListView_OnItemTapped"
-                          RowHeight="50">
+                            <Label Grid.Column="0"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   Margin="10, 0, 0, 0"
+                                   Text="{Binding TaskName}" />
 
-                    <ListView.ItemTemplate>
+                            <!-- <StackLayout Grid.Row="1" -->
+                            <!--              Grid.Column="0" -->
+                            <!--              Margin="10, 0, 5, 0" -->
+                            <!--              Orientation="Horizontal"> -->
+                            <!--     <Label Text="{x:Static resources:AppResources.TimeOfCreation}" /> -->
+                            <!--     <Label -->
+                            <!--         Text="{Binding Path=TaskCreationTime, StringFormat='{}{0: dd/MM/yyyy HH:mm:ss}'}" /> -->
+                            <!-- </StackLayout> -->
 
-                        <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.View>
-                                    <Grid>
+                            <StackLayout Grid.Row="1"
+                                         Grid.Column="1"
+                                         Margin="10, 0, 10, 0"
+                                         Orientation="Horizontal">
+                                <Label Text="{Binding Source={x:Static resources:AppResources.Deadline}, StringFormat='{0}:'}" />
+                                <Label
+                                    Text="{Binding DeadlineTime, StringFormat='{}{0: dd/MM/yyyy HH:mm:ss}'}" />
+                            </StackLayout>
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
+                        </Grid>
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
+                    </DataTemplate>
 
-                                        <Label Grid.Column="0"
-                                               Grid.Row="0"
-                                               Text="{Binding TaskName}" />
+                </CollectionView.ItemTemplate>
 
-                                        <StackLayout Grid.Row="1"
-                                                     Grid.Column="0"
-                                                     Orientation="Horizontal">
-                                            <Label Text="Created" />
-                                            <Label
-                                                Text="{Binding Path=TaskCreationTime, StringFormat='{}{0: dd/MM/yyyy HH:mm:ss}'}" />
-                                        </StackLayout>
+            </CollectionView>
 
-                                        <StackLayout Grid.Row="1"
-                                                     Grid.Column="1"
-                                                     Orientation="Horizontal">
-                                            <Label Text="Deadline" />
-                                            <Label
-                                                Text="{Binding DeadlineTime, StringFormat='{}{0: dd/MM/yyyy HH:mm:ss}'}" />
-                                        </StackLayout>
-
-                                    </Grid>
-                                </ViewCell.View>
-                            </ViewCell>
-
-                        </DataTemplate>
-
-                    </ListView.ItemTemplate>
-
-                </ListView>
-
-            </RefreshView>
-        </Grid>
+        </RefreshView>
 
     </ContentPage.Content>
 </ContentPage>

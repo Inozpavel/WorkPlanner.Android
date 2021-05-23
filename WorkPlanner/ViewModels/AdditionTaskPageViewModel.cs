@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
-    public class AdditionTaskPageViewModel : AdditionViewModel<RoomTask>
+    public class AdditionTaskPageViewModel : BaseViewModel
     {
         private readonly Room _room;
 
@@ -32,7 +32,7 @@ namespace WorkPlanner.ViewModels
         {
             if (RoomTaskRequest.DeadlineTime <= DateTime.Now)
             {
-                OnFailedAddition(AppResources.DeadlineError);
+                MessagingCenter.Send(AppResources.DeadlineError, Messages.TaskAdditionFail);
                 return;
             }
 
@@ -46,11 +46,11 @@ namespace WorkPlanner.ViewModels
             if (result.IsSuccessStatusCode)
             {
                 var roomTask = await ServerHelper.DeserializeAsync<RoomTask>(resultContent);
-                OnSuccessfulAddition(roomTask);
+                MessagingCenter.Send(roomTask, Messages.TaskAdditionSuccess);
                 return;
             }
 
-            OnFailedAddition(ServerHelper.GetErrorFromResponse(resultContent));
+            MessagingCenter.Send(ServerHelper.GetErrorFromResponse(resultContent), Messages.TaskAdditionFail);
         }
     }
 }

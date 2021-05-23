@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkPlanner.Pages.RoomInformationPage"
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
+             xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
+             x:Name="InformationPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:RoomInformationPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" Orientation="Vertical">
+                <Label Text="{x:Static resources:AppResources.RoomName}" />
+                <Entry x:Name="RoomNameEntry"
+                       MaxLength="30"
+                       Text="{Binding Room.RoomName}" />
+
+                <Label Text="{x:Static resources:AppResources.RoomDescription}" />
+                <Editor AutoSize="TextChanges"
+                        x:Name="RoomDescriptionEditor"
+                        Text="{Binding Room.RoomDescription}" />
+
+                <Button Text="{x:Static resources:AppResources.DeleteRoom}"
+                        TextColor="Red"
+                        TextTransform="None"
+                        Clicked="DeleteRoomOnClicked" />
+
+            </StackLayout>
+
+            <RefreshView Grid.Row="1" x:Name="UsersRefreshView"
+                         Command="{Binding LoadUsersCommand}">
+
+                <CollectionView ItemsSource="{Binding UsersInRoom}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <Grid>
+
+                                    <ScrollView>
+                                        <StackLayout Orientation="Vertical">
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Margin="10, 0, 0, 0"
+                                                       Text="{Binding User.LastName}" />
+                                                <Label Text="{Binding User.FirstName}" />
+                                                <Label Text="{Binding User.Patronymic}" />
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Margin="10, 0, 0, 0"
+                                                       FontSize="12"
+                                                       Text="{Binding RoleName}" />
+                                            </StackLayout>
+                                            <BoxView HeightRequest="1" BackgroundColor="Black" />
+                                        </StackLayout>
+
+                                    </ScrollView>
+
+                                </Grid>
+                                <SwipeView.RightItems>
+                                    <SwipeItem Text="{x:Static resources:AppResources.ChangeRole}"
+                                               IconImageSource="change_role.png"
+                                               BackgroundColor="Teal"
+                                               Command="{Binding Source={x:Reference InformationPage}, Path=ChangeUserRoleCommand}"
+                                               CommandParameter="{Binding User.UserId}" />
+                                </SwipeView.RightItems>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

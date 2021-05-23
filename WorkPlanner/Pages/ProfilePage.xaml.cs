@@ -15,7 +15,6 @@ namespace WorkPlanner.Pages
         {
             InitializeComponent();
             BindingContext = _viewModel = new ProfilePageViewModel();
-            _viewModel.UpdateProfileCommand.Execute(this);
 
             _viewModel.SuccessfulUpdate += ViewModelOnSuccessfulUpdate;
             _viewModel.FailedUpdate += ViewModelOnFailedUpdate;
@@ -23,6 +22,8 @@ namespace WorkPlanner.Pages
             _viewModel.FailedEmailResent += ViewModelOnFailedEmailResent;
 
             ServerHelper.HandleConnectionFailed(this, _viewModel);
+
+            _viewModel.UpdateProfileCommand.Execute(this);
         }
 
         private async void ViewModelOnFailedUpdate(object sender, EventArgs e)

@@ -25,7 +25,7 @@
 
     <RefreshView x:Name="ProfileRefreshView" RefreshColor="Teal" Command="{Binding UpdateProfileCommand}">
         <ScrollView>
-            <Grid>
+            <Grid Margin="0, 30, 0, 0">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

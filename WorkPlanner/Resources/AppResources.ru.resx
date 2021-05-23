@@ -28,7 +28,7 @@
         <value>Создать аккаунт</value>
     </data>
     <data name="Email" xml:space="preserve">
-        <value>Адрес электронной почты</value>
+        <value>Электронная почта</value>
     </data>
     <data name="LoginPageHeader" xml:space="preserve">
         <value>Вход в аккаунт</value>
@@ -123,9 +123,6 @@
     <data name="UpdateFailed" xml:space="preserve">
         <value>Не получилось обновить информацию, попробуйте обновить попозже!</value>
     </data>
-    <data name="AvailableRooms" xml:space="preserve">
-        <value>Доступные вам комнаты:</value>
-    </data>
     <data name="RoomName" xml:space="preserve">
         <value>Название комнаты</value>
     </data>
@@ -141,9 +138,6 @@
     <data name="EnterRoomDescription" xml:space="preserve">
         <value>Введите описание комнаты</value>
     </data>
-    <data name="ActionFailed" xml:space="preserve">
-        <value>не получилось выполнить действие!</value>
-    </data>
     <data name="DeadlineError" xml:space="preserve">
         <value>Срок сдачи не может быть меньше текущей даты</value>
     </data>
@@ -154,7 +148,7 @@
         <value>Время до конца:</value>
     </data>
     <data name="DeadlineTime" xml:space="preserve">
-        <value>Крайний срок</value>
+        <value>Время крайнего срока</value>
     </data>
     <data name="TimeOfCreation" xml:space="preserve">
         <value>Время создания</value>
@@ -195,10 +189,49 @@
     <data name="DeleteRoom" xml:space="preserve">
         <value>Удалить комнату</value>
     </data>
-    <data name="UpdateRoom" xml:space="preserve">
-        <value>Изменить описание комнаты</value>
-    </data>
     <data name="FailedToGetError" xml:space="preserve">
         <value>Не получилось получить информацию об ошибке!</value>
+    </data>
+    <data name="AdministratorRole" xml:space="preserve">
+        <value>Администратор</value>
+    </data>
+    <data name="OwnerRole" xml:space="preserve">
+        <value>Владелец</value>
+    </data>
+    <data name="MemberRole" xml:space="preserve">
+        <value>Участник</value>
+    </data>
+    <data name="NoTasks" xml:space="preserve">
+        <value>Упс, у вас пока еще нет заданий, создайте задание, нажав плюс в правом вернем углу.</value>
+    </data>
+    <data name="AlreadyRoomMember" xml:space="preserve">
+        <value>Ты уже находишься в этой комнате. Обнови страницу и поищи ее в списке</value>
+    </data>
+    <data name="ChangeRole" xml:space="preserve">
+        <value>Сменить роль</value>
+    </data>
+    <data name="AvailableRoles" xml:space="preserve">
+        <value>Доступные роли</value>
+    </data>
+    <data name="IncorrectRoleName" xml:space="preserve">
+        <value>Неверное название роли</value>
+    </data>
+    <data name="NoRooms" xml:space="preserve">
+        <value>Упс, у вас пока еще нет комнат, создайте комнату, нажав плюс в правом вернем углу.</value>
+    </data>
+    <data name="DeadlineDate" xml:space="preserve">
+        <value>Дата крайнего срока</value>
+    </data>
+    <data name="TaskContent" xml:space="preserve">
+        <value>Содержание задачи</value>
+    </data>
+    <data name="AdditionalDetails" xml:space="preserve">
+        <value>Дополнительные детали</value>
+    </data>
+    <data name="TaskName" xml:space="preserve">
+        <value>Название задачи</value>
+    </data>
+    <data name="Deadline" xml:space="preserve">
+        <value>Крайний срок</value>
     </data>
 </root>

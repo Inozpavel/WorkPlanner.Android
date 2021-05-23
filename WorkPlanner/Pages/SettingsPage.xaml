@@ -5,7 +5,7 @@
              x:Class="WorkPlanner.Pages.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
+            <Label Text="Hello, world! Work in progress!"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />
         </StackLayout>

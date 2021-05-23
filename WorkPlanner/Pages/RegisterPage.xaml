@@ -120,16 +120,21 @@
                 </Grid>
             </Frame>
 
-            <StackLayout Grid.Row="3" Orientation="Vertical"
+            <StackLayout Grid.Row="3"
+                         Orientation="Vertical"
                          VerticalOptions="End">
-                <Line HorizontalOptions="End" StrokeThickness="6" X1="0" X2="1000" Stroke="Black" />
+                
+                <BoxView HeightRequest="2"
+                         BackgroundColor="Black"/>
 
                 <Button HorizontalOptions="FillAndExpand"
                         BackgroundColor="CornflowerBlue"
+                        TextTransform="None"
                         VerticalOptions="End"
                         Margin="0, 0, 0, 5"
                         Text="{x:Static resources:AppResources.SubmitRegisterButton}"
                         Command="{Binding RegisterCommand}" />
+                
             </StackLayout>
 
         </Grid>

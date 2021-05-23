@@ -70,20 +70,38 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to complete the action!.
+        ///   Looks up a localized string similar to Additional details.
         /// </summary>
-        internal static string ActionFailed {
+        internal static string AdditionalDetails {
             get {
-                return ResourceManager.GetString("ActionFailed", resourceCulture);
+                return ResourceManager.GetString("AdditionalDetails", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rooms available for you:.
+        ///   Looks up a localized string similar to Administrator.
         /// </summary>
-        internal static string AvailableRooms {
+        internal static string AdministratorRole {
             get {
-                return ResourceManager.GetString("AvailableRooms", resourceCulture);
+                return ResourceManager.GetString("AdministratorRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are already in this room. Refresh the page and look for it in the list.
+        /// </summary>
+        internal static string AlreadyRoomMember {
+            get {
+                return ResourceManager.GetString("AlreadyRoomMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available roles.
+        /// </summary>
+        internal static string AvailableRoles {
+            get {
+                return ResourceManager.GetString("AvailableRoles", resourceCulture);
             }
         }
         
@@ -93,6 +111,15 @@ namespace WorkPlanner.Resources {
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change role.
+        /// </summary>
+        internal static string ChangeRole {
+            get {
+                return ResourceManager.GetString("ChangeRole", resourceCulture);
             }
         }
         
@@ -129,6 +156,24 @@ namespace WorkPlanner.Resources {
         internal static string CreatorInformation {
             get {
                 return ResourceManager.GetString("CreatorInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadline.
+        /// </summary>
+        internal static string Deadline {
+            get {
+                return ResourceManager.GetString("Deadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadline date.
+        /// </summary>
+        internal static string DeadlineDate {
+            get {
+                return ResourceManager.GetString("DeadlineDate", resourceCulture);
             }
         }
         
@@ -295,6 +340,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect role name.
+        /// </summary>
+        internal static string IncorrectRoleName {
+            get {
+                return ResourceManager.GetString("IncorrectRoleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No internet connection, check your connection.
         /// </summary>
         internal static string InternetIsMissing {
@@ -349,11 +403,47 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        internal static string MemberRole {
+            get {
+                return ResourceManager.GetString("MemberRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops, you have no rooms yet, create a room by clicking the plus in the upper right corner..
+        /// </summary>
+        internal static string NoRooms {
+            get {
+                return ResourceManager.GetString("NoRooms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops, you have no tasks yet, create a task by clicking the plus in the upper right corner..
+        /// </summary>
+        internal static string NoTasks {
+            get {
+                return ResourceManager.GetString("NoTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Owner.
+        /// </summary>
+        internal static string OwnerRole {
+            get {
+                return ResourceManager.GetString("OwnerRole", resourceCulture);
             }
         }
         
@@ -520,6 +610,24 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task content.
+        /// </summary>
+        internal static string TaskContent {
+            get {
+                return ResourceManager.GetString("TaskContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task name.
+        /// </summary>
+        internal static string TaskName {
+            get {
+                return ResourceManager.GetString("TaskName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time is over!.
         /// </summary>
         internal static string TimeEnded {
@@ -552,15 +660,6 @@ namespace WorkPlanner.Resources {
         internal static string UpdateFailed {
             get {
                 return ResourceManager.GetString("UpdateFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change room description.
-        /// </summary>
-        internal static string UpdateRoom {
-            get {
-                return ResourceManager.GetString("UpdateRoom", resourceCulture);
             }
         }
         

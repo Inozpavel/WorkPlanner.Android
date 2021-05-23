@@ -42,7 +42,8 @@
 
             <Button Grid.Row="2"
                     VerticalOptions="End"
-                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="CornflowerBlue"
+                    TextTransform="None"
                     Text="{x:Static resources:AppResources.Submit}"
                     Command="{Binding AddRoomCommand}" />
 

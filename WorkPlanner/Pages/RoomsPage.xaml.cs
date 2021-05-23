@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using WorkPlanner.Models;
 using WorkPlanner.Resources;
 using WorkPlanner.ViewModels;
@@ -17,23 +18,32 @@ namespace WorkPlanner.Pages
             InitializeComponent();
             BindingContext = _viewModel = new RoomsPageViewModel();
 
-            _viewModel.SuccessfulUpdate += (_, _) => { RoomsRefreshView.IsRefreshing = false; };
-            _viewModel.FailedUpdate += ViewModelOnFailedUpdate;
-            _viewModel.UpdateRoomsCommand.Execute(this);
+            MessagingCenter.Subscribe<RoomsPageViewModel>(this, Messages.RoomsUpdateSuccess,
+                _ => RoomsRefreshView.IsRefreshing = false);
+
+            MessagingCenter.Subscribe<RoomsPageViewModel>(this, Messages.RoomsUpdateFail,
+                async _ =>
+                {
+                    RoomsRefreshView.IsRefreshing = false;
+                    await DisplayAlert(AppResources.Error, AppResources.UpdateFailed, "Ok");
+                });
+
+            MessagingCenter.Subscribe<RoomInformationPage>(this, Messages.Back, async _ =>
+            {
+                await Navigation.PopAsync();
+                await Navigation.PopAsync();
+            });
+
+            MessagingCenter.Subscribe<Room>(this, Messages.RoomAdditionSuccess,
+                async _ => await Navigation.PopModalAsync());
+
+            MessagingCenter.Subscribe<string>(this, Messages.RoomJoinFail,
+                async message => await DisplayAlert(AppResources.Error, message, "Ok"));
+
             ServerHelper.HandleConnectionFailed(this, _viewModel);
-        }
 
-        private async void ViewModelOnFailedUpdate(object sender, EventArgs e)
-        {
-            RoomsRefreshView.IsRefreshing = false;
-            await DisplayAlert(AppResources.Error, AppResources.UpdateFailed, "Ok");
-        }
-
-        private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (e.Item is not Room selectedRoom)
-                return;
-            Navigation.PushAsync(new TasksPage(_viewModel, selectedRoom));
+            _viewModel.ConnectionFailed += (_, _) => RoomsRefreshView.IsRefreshing = false;
+            _viewModel.UpdateRoomsCommand.Execute(this);
         }
 
         private async void AddRoomOnClicked(object sender, EventArgs e)
@@ -41,7 +51,7 @@ namespace WorkPlanner.Pages
             string result = await DisplayActionSheet(AppResources.SelectAnAction, AppResources.Cancel, null,
                 AppResources.CreateNewRoom, AppResources.JoinAnExistingRoom);
             if (result == AppResources.CreateNewRoom)
-                await Navigation.PushModalAsync(new AddingRoomPage(_viewModel));
+                await Navigation.PushModalAsync(new AddingRoomPage());
             else if (result == AppResources.JoinAnExistingRoom)
             {
                 string id = await DisplayPromptAsync(AppResources.JoiningAnExistingRoom,
@@ -49,10 +59,22 @@ namespace WorkPlanner.Pages
                 if (id == null || id == AppResources.Cancel)
                     return;
                 if (!Guid.TryParse(id, out var guidId))
+                {
                     await DisplayAlert(AppResources.Error, AppResources.WrongId, "Ok");
+                    return;
+                }
 
                 _viewModel.JoinExistingRoomCommand.Execute(guidId);
             }
+        }
+
+        private void CollectionViewOnItemSelected(object sender, SelectionChangedEventArgs e)
+        {
+            RoomsCollectionView.SelectedItem = null;
+
+            if (e.CurrentSelection.FirstOrDefault() is not Room selectedRoom)
+                return;
+            Navigation.PushAsync(new TasksPage(selectedRoom));
         }
     }
 }

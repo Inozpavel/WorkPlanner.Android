@@ -123,9 +123,6 @@
     <data name="UpdateFailed" xml:space="preserve">
         <value>Failed to update information, please try again later!</value>
     </data>
-    <data name="AvailableRooms" xml:space="preserve">
-        <value>Rooms available for you:</value>
-    </data>
     <data name="RoomName" xml:space="preserve">
         <value>Room name</value>
     </data>
@@ -140,9 +137,6 @@
     </data>
     <data name="EnterRoomDescription" xml:space="preserve">
         <value>Enter room description</value>
-    </data>
-    <data name="ActionFailed" xml:space="preserve">
-        <value>Failed to complete the action!</value>
     </data>
     <data name="DeadlineError" xml:space="preserve">
         <value>Deadline cannot be less than the current date</value>
@@ -195,10 +189,49 @@
     <data name="DeleteRoom" xml:space="preserve">
         <value>Delete room</value>
     </data>
-    <data name="UpdateRoom" xml:space="preserve">
-        <value>Change room description</value>
-    </data>
     <data name="FailedToGetError" xml:space="preserve">
         <value>Failed to get error!</value>
+    </data>
+    <data name="OwnerRole" xml:space="preserve">
+        <value>Owner</value>
+    </data>
+    <data name="AdministratorRole" xml:space="preserve">
+        <value>Administrator</value>
+    </data>
+    <data name="MemberRole" xml:space="preserve">
+        <value>Member</value>
+    </data>
+    <data name="NoTasks" xml:space="preserve">
+        <value>Oops, you have no tasks yet, create a task by clicking the plus in the upper right corner.</value>
+    </data>
+    <data name="AlreadyRoomMember" xml:space="preserve">
+        <value>You are already in this room. Refresh the page and look for it in the list</value>
+    </data>
+    <data name="ChangeRole" xml:space="preserve">
+        <value>Change role</value>
+    </data>
+    <data name="AvailableRoles" xml:space="preserve">
+        <value>Available roles</value>
+    </data>
+    <data name="IncorrectRoleName" xml:space="preserve">
+        <value>Incorrect role name</value>
+    </data>
+    <data name="NoRooms" xml:space="preserve">
+        <value>Oops, you have no rooms yet, create a room by clicking the plus in the upper right corner.</value>
+    </data>
+    <data name="DeadlineDate" xml:space="preserve">
+        <value>Deadline date</value>
+    </data>
+    <data name="TaskContent" xml:space="preserve">
+        <value>Task content</value>
+    </data>
+    <data name="AdditionalDetails" xml:space="preserve">
+        <value>Additional details</value>
+    </data>
+    <data name="TaskName" xml:space="preserve">
+        <value>Task name</value>
+    </data>
+    <data name="Deadline" xml:space="preserve">
+        <value>Deadline</value>
     </data>
 </root>

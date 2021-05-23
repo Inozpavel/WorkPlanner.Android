@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkPlanner.Pages.RoomsPage"
              xmlns:resources="clr-namespace:WorkPlanner.Resources;assembly=WorkPlanner"
-             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner">
+             xmlns:viewModels="clr-namespace:WorkPlanner.ViewModels;assembly=WorkPlanner"
+             Title="{x:Static resources:AppResources.RoomsPageTitle}">
 
     <ContentPage.BindingContext>
         <viewModels:RoomsPageViewModel />
@@ -21,29 +22,36 @@
         <RefreshView x:Name="RoomsRefreshView"
                      Command="{Binding UpdateRoomsCommand}">
 
-            <ListView SeparatorVisibility="Default"
-                      SeparatorColor="Black"
-                      ItemsSource="{Binding Rooms}"
-                      ItemTapped="ListView_OnItemTapped">
+            <CollectionView x:Name="RoomsCollectionView"
+                            ItemsSource="{Binding Rooms}"
+                            SelectionChanged="CollectionViewOnItemSelected"
+                            SelectionMode="Single"
+                            EmptyView="{x:Static resources:AppResources.NoRooms}">
 
-                <ListView.Header>
-                    <Grid>
-                        <Label Margin="10, 0, 0, 0"
-                               Text="{x:Static resources:AppResources.AvailableRooms}" />
-                    </Grid>
-                </ListView.Header>
-
-                <ListView.ItemTemplate>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
 
-                        <TextCell
-                            TextColor="Black"
-                            Text="{Binding RoomName}"
-                            Detail="{Binding RoomDescription}" />
+                        <StackLayout Orientation="Vertical">
+
+                            <Label Text="{Binding RoomName}"
+                                   TextColor="Black"
+                                   Margin="10, 10, 0, 0"
+                                   FontSize="18" />
+
+                            <Label Text="{Binding RoomDescription}"
+                                   FontSize="14"
+                                   LineBreakMode="TailTruncation"
+                                   Margin="10, 0, 0, 0"/>
+                            
+                            <BoxView HeightRequest="0.1"
+                                     BackgroundColor="Black"/>
+
+                        </StackLayout>
 
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
         </RefreshView>
     </ContentPage.Content>
 </ContentPage>

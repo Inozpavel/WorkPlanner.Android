@@ -7,19 +7,19 @@ using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
-    public class AdditionRoomPageViewModel : AdditionViewModel<Room>
+    public class AdditionRoomPageViewModel : BaseViewModel
     {
         public AdditionRoomPageViewModel()
         {
             Request = new RoomRequest();
-            AddRoomCommand = new Command(ServerHelper.DecorateFailedConnectToServer(Send, OnConnectionFailed));
+            AddRoomCommand = new Command(ServerHelper.DecorateFailedConnectToServer(AddRoom, OnConnectionFailed));
         }
 
         public RoomRequest Request { get; }
 
         public Command AddRoomCommand { get; }
 
-        private async Task Send()
+        private async Task AddRoom()
         {
             var client = await ServerHelper.GetClientWithToken();
 
@@ -31,11 +31,11 @@ namespace WorkPlanner.ViewModels
             if (result.IsSuccessStatusCode)
             {
                 var room = await ServerHelper.DeserializeAsync<Room>(resultContent);
-                OnSuccessfulAddition(room);
+                MessagingCenter.Send(room, Messages.RoomAdditionSuccess);
                 return;
             }
 
-            OnFailedAddition(ServerHelper.GetErrorFromResponse(resultContent));
+            MessagingCenter.Send(ServerHelper.GetErrorFromResponse(resultContent), Messages.RoomAdditionFail);
         }
     }
 }

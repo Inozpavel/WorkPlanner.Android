@@ -11,13 +11,15 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid BackgroundColor="White">
+        <Grid BackgroundColor="White"
+              Margin="10">
+
             <Grid.Resources>
                 <Style TargetType="Entry">
                     <Setter Property="Background" Value="White" />
-                    <Setter Property="Margin" Value=" 10, 0" />
                 </Style>
             </Grid.Resources>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -76,15 +78,17 @@
                          Grid.Column="0"
                          Grid.ColumnSpan="2"
                          Orientation="Horizontal">
-                <Switch Margin="10, 0, 0, 0"
+                <Switch Margin="0, 0, 0, 0"
                         IsToggled="{Binding ShouldRememberUser}" />
-                <Label Text="{x:Static resources:AppResources.RememberUser}" />
+                <Label Text="{x:Static resources:AppResources.RememberUser}"
+                       VerticalOptions="Center"/>
             </StackLayout>
 
             <Button Grid.Row="5"
                     Grid.Column="0"
                     Text="{x:Static resources:AppResources.RegisterButton}"
                     VerticalOptions="End"
+                    TextTransform="None"
                     HorizontalOptions="Center"
                     BackgroundColor="Transparent"
                     Clicked="Button_OnClicked" />
@@ -93,6 +97,7 @@
                     Grid.Column="1"
                     x:Name="LoginButton"
                     IsEnabled="False"
+                    TextTransform="None"
                     CornerRadius="20"
                     VerticalOptions="End"
                     Text="{x:Static resources:AppResources.SubmitLoginButton}"

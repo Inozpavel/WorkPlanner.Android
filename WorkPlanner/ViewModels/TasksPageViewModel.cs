@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -8,7 +7,7 @@ using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
-    public class TasksPageViewModel : DeletionViewModel<Room>
+    public class TasksPageViewModel : BaseViewModel
     {
         public TasksPageViewModel()
         {
@@ -19,20 +18,17 @@ namespace WorkPlanner.ViewModels
         {
             Room = room;
             LoadTasksCommand = new Command(ServerHelper.DecorateFailedConnectToServer(Load, OnConnectionFailed));
-            DeleteRoomCommand = new Command(ServerHelper.DecorateFailedConnectToServer(DeleteRoom, OnConnectionFailed));
+
+            MessagingCenter.Subscribe<RoomTask>(this, Messages.TaskDeleted, sender => RoomTasks.Remove(sender));
+
+            MessagingCenter.Subscribe<RoomTask>(this, Messages.TaskAdditionSuccess, task => RoomTasks.Add(task));
         }
 
         public Room Room { get; }
 
-        public ObservableCollection<RoomTask> Tasks { get; } = new();
+        public ObservableCollection<RoomTask> RoomTasks { get; } = new();
 
         public Command LoadTasksCommand { get; }
-
-        public Command DeleteRoomCommand { get; }
-
-        public event EventHandler SuccessfulLoading;
-
-        public event EventHandler FailedLoading;
 
         private async Task Load()
         {
@@ -48,34 +44,18 @@ namespace WorkPlanner.ViewModels
 
                 if (rooms is {Count: > 0})
                 {
-                    Tasks.Clear();
+                    RoomTasks.Clear();
                     foreach (var roomTask in rooms)
                     {
-                        Tasks.Add(roomTask);
+                        RoomTasks.Add(roomTask);
                     }
                 }
 
-                SuccessfulLoading?.Invoke(this, EventArgs.Empty);
+                MessagingCenter.Send(this, Messages.TasksUpdateSuccess);
                 return;
             }
 
-            FailedLoading?.Invoke(this, EventArgs.Empty);
-        }
-
-        private async Task DeleteRoom()
-        {
-            var client = await ServerHelper.GetClientWithToken();
-
-            var result = await client.DeleteAsync(string.Format(Settings.DeleteRoomUrl, Room.RoomId));
-
-            string resultContent = await result.Content.ReadAsStringAsync();
-            if (result.IsSuccessStatusCode)
-            {
-                OnSuccessfulDeletion(Room);
-                return;
-            }
-
-            OnFailedDeletion(ServerHelper.GetErrorFromResponse(resultContent));
+            MessagingCenter.Send(this, Messages.TasksUpdateFail);
         }
     }
 }

@@ -70,20 +70,38 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to не получилось выполнить действие!.
+        ///   Looks up a localized string similar to Дополнительные детали.
         /// </summary>
-        internal static string ActionFailed {
+        internal static string AdditionalDetails {
             get {
-                return ResourceManager.GetString("ActionFailed", resourceCulture);
+                return ResourceManager.GetString("AdditionalDetails", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Доступные вам комнаты:.
+        ///   Looks up a localized string similar to Администратор.
         /// </summary>
-        internal static string AvailableRooms {
+        internal static string AdministratorRole {
             get {
-                return ResourceManager.GetString("AvailableRooms", resourceCulture);
+                return ResourceManager.GetString("AdministratorRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ты уже находишься в этой комнате. Обнови страницу и поищи ее в списке.
+        /// </summary>
+        internal static string AlreadyRoomMember {
+            get {
+                return ResourceManager.GetString("AlreadyRoomMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Доступные роли.
+        /// </summary>
+        internal static string AvailableRoles {
+            get {
+                return ResourceManager.GetString("AvailableRoles", resourceCulture);
             }
         }
         
@@ -93,6 +111,15 @@ namespace WorkPlanner.Resources {
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сменить роль.
+        /// </summary>
+        internal static string ChangeRole {
+            get {
+                return ResourceManager.GetString("ChangeRole", resourceCulture);
             }
         }
         
@@ -133,6 +160,24 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Крайний срок.
+        /// </summary>
+        internal static string Deadline {
+            get {
+                return ResourceManager.GetString("Deadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата крайнего срока.
+        /// </summary>
+        internal static string DeadlineDate {
+            get {
+                return ResourceManager.GetString("DeadlineDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Срок сдачи не может быть меньше текущей даты.
         /// </summary>
         internal static string DeadlineError {
@@ -142,7 +187,7 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Крайний срок.
+        ///   Looks up a localized string similar to Время крайнего срока.
         /// </summary>
         internal static string DeadlineTime {
             get {
@@ -160,7 +205,7 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Адрес электронной почты.
+        ///   Looks up a localized string similar to Электронная почта.
         /// </summary>
         internal static string Email {
             get {
@@ -295,6 +340,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Неверное название роли.
+        /// </summary>
+        internal static string IncorrectRoleName {
+            get {
+                return ResourceManager.GetString("IncorrectRoleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Отсутствует соединение с интернетом, проверьте свое подключение.
         /// </summary>
         internal static string InternetIsMissing {
@@ -349,11 +403,47 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Участник.
+        /// </summary>
+        internal static string MemberRole {
+            get {
+                return ResourceManager.GetString("MemberRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нет.
         /// </summary>
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Упс, у вас пока еще нет комнат, создайте комнату, нажав плюс в правом вернем углу..
+        /// </summary>
+        internal static string NoRooms {
+            get {
+                return ResourceManager.GetString("NoRooms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Упс, у вас пока еще нет заданий, создайте задание, нажав плюс в правом вернем углу..
+        /// </summary>
+        internal static string NoTasks {
+            get {
+                return ResourceManager.GetString("NoTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Владелец.
+        /// </summary>
+        internal static string OwnerRole {
+            get {
+                return ResourceManager.GetString("OwnerRole", resourceCulture);
             }
         }
         
@@ -520,6 +610,24 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Содержание задачи.
+        /// </summary>
+        internal static string TaskContent {
+            get {
+                return ResourceManager.GetString("TaskContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Название задачи.
+        /// </summary>
+        internal static string TaskName {
+            get {
+                return ResourceManager.GetString("TaskName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Время вышло!.
         /// </summary>
         internal static string TimeEnded {
@@ -552,15 +660,6 @@ namespace WorkPlanner.Resources {
         internal static string UpdateFailed {
             get {
                 return ResourceManager.GetString("UpdateFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Изменить описание комнаты.
-        /// </summary>
-        internal static string UpdateRoom {
-            get {
-                return ResourceManager.GetString("UpdateRoom", resourceCulture);
             }
         }
         

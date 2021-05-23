@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WorkPlanner.Models;
@@ -15,7 +17,22 @@ namespace WorkPlanner.ViewModels
         {
             UpdateRoomsCommand =
                 new Command(ServerHelper.DecorateFailedConnectToServer(UpdateRooms, OnConnectionFailed));
-            JoinExistingRoomCommand = new Command(ServerHelper.DecorateFailedConnectToServer(JoinRoom, OnConnectionFailed));
+            JoinExistingRoomCommand =
+                new Command(ServerHelper.DecorateFailedConnectToServer(JoinRoom, OnConnectionFailed));
+
+            MessagingCenter.Subscribe<Room>(this, Messages.RoomAdditionSuccess, room => Rooms.Add(room));
+
+            MessagingCenter.Subscribe<Room>(this, Messages.RoomDeletionFail, room => Rooms.Remove(room));
+
+            MessagingCenter.Subscribe<Room>(this, Messages.RoomInformationUpdateSuccess, updatedRoom =>
+            {
+                var room = Rooms.FirstOrDefault(x => x.RoomId == updatedRoom.RoomId);
+                if (room == null)
+                    return;
+                int index = Rooms.IndexOf(room);
+                if (index >= 0 && index < Rooms.Count)
+                    Rooms[index] = room;
+            });
         }
 
         public Command UpdateRoomsCommand { get; }
@@ -24,11 +41,6 @@ namespace WorkPlanner.ViewModels
 
         public ObservableCollection<Room> Rooms { get; set; } = new();
 
-        public event EventHandler SuccessfulUpdate;
-
-        public event EventHandler FailedUpdate;
-
-        public event EventHandler<string> FailedJoin;
 
         private async Task UpdateRooms()
         {
@@ -45,19 +57,22 @@ namespace WorkPlanner.ViewModels
                     Rooms.Clear();
                     foreach (var room in rooms)
                         Rooms.Add(room);
+
+                    MessagingCenter.Send(this, Messages.RoomsUpdateSuccess);
+                    return;
                 }
 
-                SuccessfulUpdate?.Invoke(this, EventArgs.Empty);
-                return;
+                MessagingCenter.Send(this, Messages.RoomsUpdateSuccess);
             }
-
-            FailedUpdate?.Invoke(this, EventArgs.Empty);
         }
 
         private async Task JoinRoom(object parameter)
         {
             if (parameter is not Guid roomId)
-                OnFailedJoin(AppResources.WrongId);
+            {
+                MessagingCenter.Send(AppResources.WrongId, Messages.RoomJoinFail);
+                return;
+            }
 
             var client = await ServerHelper.GetClientWithToken();
 
@@ -68,11 +83,17 @@ namespace WorkPlanner.ViewModels
             {
                 var room = await ServerHelper.DeserializeAsync<Room>(resultContent);
                 Rooms.Insert(0, room);
+                MessagingCenter.Send(room, Messages.RoomJoinSuccess);
+                return;
             }
 
-            OnFailedJoin(AppResources.WrongId);
-        }
+            if (result.StatusCode == HttpStatusCode.BadRequest)
+            {
+                MessagingCenter.Send(AppResources.AlreadyRoomMember, Messages.RoomJoinFail);
+                return;
+            }
 
-        private void OnFailedJoin(string message) => FailedJoin?.Invoke(this, message);
+            MessagingCenter.Send(ServerHelper.GetErrorFromResponse(resultContent), Messages.RoomJoinFail);
+        }
     }
 }

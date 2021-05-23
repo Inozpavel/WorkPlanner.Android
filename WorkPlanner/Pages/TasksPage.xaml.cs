@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using WorkPlanner.Models;
 using WorkPlanner.Resources;
 using WorkPlanner.ViewModels;
@@ -15,31 +16,40 @@ namespace WorkPlanner.Pages
 
         private readonly TasksPageViewModel _viewModel;
 
-        public TasksPage(RoomsPageViewModel roomsPageViewModel, Room room)
+        public TasksPage(Room room)
         {
-            _room = room;
             InitializeComponent();
 
+            _room = room;
             _viewModel = new TasksPageViewModel(room);
+            BindingContext = _viewModel;
 
-            _viewModel.SuccessfulLoading += (_, _) => TasksRefreshView.IsRefreshing = false;
-            _viewModel.FailedLoading += (_, _) =>
+            _viewModel.ConnectionFailed += (_, _) => TasksRefreshView.IsRefreshing = false;
+
+            MessagingCenter.Subscribe<TasksPageViewModel>(this, Messages.TasksUpdateSuccess,
+                _ => TasksRefreshView.IsRefreshing = false);
+
+            MessagingCenter.Subscribe<TasksPageViewModel>(this, Messages.TasksUpdateFail, async _ =>
             {
                 TasksRefreshView.IsRefreshing = false;
-                DisplayAlert(AppResources.Error, AppResources.UpdateFailed, "Ok");
-            };
-            _viewModel.SuccessfulDeletion += (_, deletedRoom) =>
-            {
-                roomsPageViewModel.Rooms.Remove(deletedRoom);
-                Navigation.PopAsync();
-            };
-            _viewModel.FailedDeletion += (_, message) => DisplayAlert(AppResources.Error, message, "Ok");
+                await DisplayAlert(AppResources.Error, AppResources.UpdateFailed, "Ok");
+            });
+
+            MessagingCenter.Subscribe<string>(this, Messages.TaskAdditionFail,
+                async message => await DisplayAlert(AppResources.Error, message, "Ok"));
+
+            MessagingCenter.Subscribe<RoomTask>(this, Messages.TaskAdditionSuccess,
+                async _ => await Navigation.PopModalAsync());
+
+            MessagingCenter.Subscribe<Room>(this, Messages.RoomInformationUpdateSuccess, updatedRoom =>
+                TasksContentPage.Title = updatedRoom.RoomName);
+
+            ServerHelper.HandleConnectionFailed(this, _viewModel);
 
             _viewModel.LoadTasksCommand.Execute(this);
-            BindingContext = _viewModel;
         }
 
-        private async void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+        private async void TasksListViewOnItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item is not RoomTask roomTask)
                 return;
@@ -49,22 +59,23 @@ namespace WorkPlanner.Pages
 
         private async void AddTaskOnClicked(object sender, EventArgs e)
         {
-            var page = new AddingTaskPage(_viewModel, _room);
-            await Navigation.PushAsync(page);
+            var page = new AddingTaskPage(_room);
+            await Navigation.PushModalAsync(page);
         }
 
-        private async void DeleteRoomOnClicked(object sender, EventArgs e)
-        {
-            if (await DisplayAlert(AppResources.Warning, AppResources.IrrevocableAction,
-                AppResources.Yes, AppResources.No))
-            {
-                _viewModel.DeleteRoomCommand.Execute(this);
-            }
-        }
-
-        private void CopyRoomIdOnClicked(object sender, EventArgs e)
-        {
+        private void CopyRoomIdOnClicked(object sender, EventArgs e) =>
             Clipboard.SetTextAsync(_viewModel.Room.RoomId.ToString());
+
+        private async void InformationOnClicked(object sender, EventArgs e) =>
+            await Navigation.PushAsync(new RoomInformationPage(_room));
+
+        private async void TasksCollectionViewOnItemSelected(object sender, SelectionChangedEventArgs e)
+        {
+            TaskCollectionView.SelectedItem = null;
+            if (e.CurrentSelection.FirstOrDefault() is not RoomTask roomTask)
+                return;
+
+            await Navigation.PushAsync(new TaskDetailsPage(roomTask));
         }
     }
 }
