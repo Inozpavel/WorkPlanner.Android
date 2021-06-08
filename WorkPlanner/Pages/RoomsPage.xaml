@@ -41,10 +41,10 @@
                             <Label Text="{Binding RoomDescription}"
                                    FontSize="14"
                                    LineBreakMode="TailTruncation"
-                                   Margin="10, 0, 0, 0"/>
-                            
-                            <BoxView HeightRequest="0.1"
-                                     BackgroundColor="Black"/>
+                                   Margin="10, 0, 0, 0" />
+
+                            <BoxView HeightRequest="0.5"
+                                     BackgroundColor="Black" />
 
                         </StackLayout>
 

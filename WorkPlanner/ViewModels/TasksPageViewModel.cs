@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WorkPlanner.Models;
@@ -19,9 +20,23 @@ namespace WorkPlanner.ViewModels
             Room = room;
             LoadTasksCommand = new Command(ServerHelper.DecorateFailedConnectToServer(Load, OnConnectionFailed));
 
-            MessagingCenter.Subscribe<RoomTask>(this, Messages.TaskDeleted, sender => RoomTasks.Remove(sender));
+            MessagingCenter.Subscribe<RoomTask>(this, Messages.TaskDeletionSuccess, roomTask =>
+            {
+                var task = RoomTasks.FirstOrDefault(x => x.RoomTaskId == roomTask.RoomTaskId);
+                if (task != null)
+                    RoomTasks.Remove(task);
+            });
 
             MessagingCenter.Subscribe<RoomTask>(this, Messages.TaskAdditionSuccess, task => RoomTasks.Add(task));
+
+            MessagingCenter.Subscribe<RoomTask>(this, Messages.TaskUpdateSuccess, roomTask =>
+            {
+                var task = RoomTasks.FirstOrDefault(x => x.RoomTaskId == roomTask.RoomTaskId);
+                int index = RoomTasks.IndexOf(task);
+
+                if (index >= 0 && index < RoomTasks.Count)
+                    RoomTasks[index] = roomTask;
+            });
         }
 
         public Room Room { get; }
@@ -51,11 +66,11 @@ namespace WorkPlanner.ViewModels
                     }
                 }
 
-                MessagingCenter.Send(this, Messages.TasksUpdateSuccess);
+                MessagingCenter.Send(this, Messages.TasksLoadSuccess);
                 return;
             }
 
-            MessagingCenter.Send(this, Messages.TasksUpdateFail);
+            MessagingCenter.Send(this, Messages.TasksLoadFail);
         }
     }
 }

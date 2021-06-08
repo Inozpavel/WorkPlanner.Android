@@ -10,30 +10,30 @@
         <viewModels:ProfilePageViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="edit.png"
-                     Order="Primary"
-                     Priority="0" />
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="18" />
-            <Setter Property="Margin" Value="10, 0, 10, 0" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="VerticalOptions" Value="Center" />
         </Style>
     </ContentPage.Resources>
 
-    <RefreshView x:Name="ProfileRefreshView" RefreshColor="Teal" Command="{Binding UpdateProfileCommand}">
+    <RefreshView x:Name="ProfileRefreshView"
+                 RefreshColor="Teal"
+                 Command="{Binding LoadProfileCommand}">
+
         <ScrollView>
-            <Grid Margin="0, 30, 0, 0">
+            <Grid Margin="10, 30, 10, 0">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -45,50 +45,57 @@
                 <Label Grid.Row="0"
                        Grid.Column="0"
                        Text="{x:Static resources:AppResources.LastName}" />
-                <Label Grid.Row="0"
+                <Entry Grid.Row="0"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
-                       Text="{Binding LastName}" />
+                       Keyboard="Text"
+                       x:Name="LastNameEntry"
+                       Text="{Binding Profile.LastName}" />
 
                 <Label Grid.Row="1"
                        Grid.Column="0"
                        Text="{x:Static resources:AppResources.FirstName}" />
-                <Label Grid.Row="1"
+                <Entry Grid.Row="1"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
-                       Text="{Binding FirstName}" />
+                       Keyboard="Text"
+                       x:Name="FirstNameEntry"
+                       Text="{Binding Profile.FirstName}" />
 
                 <Label Grid.Row="2"
                        Grid.Column="0"
                        Text="{x:Static resources:AppResources.Patronymic}" />
-                <Label Grid.Row="2"
+                <Entry Grid.Row="2"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
-                       Text="{Binding Patronymic}" />
+                       Keyboard="Text"
+                       x:Name="PatronymicEntry"
+                       Text="{Binding Profile.Patronymic}" />
 
                 <Label Grid.Row="3"
                        Grid.Column="0"
                        Text="{x:Static resources:AppResources.PhoneNumber}" />
-                <Label Grid.Row="3"
+                <Entry Grid.Row="3"
                        Grid.Column="1"
-                       Text="{Binding PhoneNumber}" />
+                       Keyboard="Telephone"
+                       x:Name="PhoneNumberEntry"
+                       Text="{Binding Profile.PhoneNumber}" />
 
                 <Label Grid.Row="4"
                        Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       HorizontalOptions="Center"
                        Text="{x:Static resources:AppResources.Email}" />
-                <Label Grid.Row="4"
-                       Grid.Column="1"
-                       Text="{Binding Email}" />
+                <Label Grid.Row="5"
+                       Grid.Column="0"
+                       Text="{Binding Profile.Email}" />
 
-                <ImageButton Grid.Row="4"
-                             Grid.Column="2"
+                <ImageButton Grid.Row="5"
+                             Grid.Column="1"
                              HeightRequest="35"
                              WidthRequest="35"
                              Margin="0, 0, 10, 0"
                              VerticalOptions="Center"
                              BackgroundColor="Transparent"
                              x:Name="EmailImage" IsVisible="False"
-                             Clicked="EmailImage_OnClicked" />
+                             Clicked="EmailImageOnClicked" />
 
             </Grid>
         </ScrollView>

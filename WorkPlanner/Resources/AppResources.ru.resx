@@ -37,7 +37,7 @@
         <value>Показать пароль</value>
     </data>
     <data name="SubmitRegisterButton" xml:space="preserve">
-        <value>Зарегестрироваться</value>
+        <value>Зарегистрироваться</value>
     </data>
     <data name="LastName" xml:space="preserve">
         <value>Фамилия</value>
@@ -65,9 +65,6 @@
     </data>
     <data name="SuccessfulRegistrationAlertTitle" xml:space="preserve">
         <value>Успешная регистрация</value>
-    </data>
-    <data name="FailedRegistrationAlertTitle" xml:space="preserve">
-        <value>Ошибка при регистрации</value>
     </data>
     <data name="ConnectionFailed" xml:space="preserve">
         <value>Не получилось связаться с сервером, попробуйте позже</value>
@@ -184,7 +181,7 @@
         <value>Предупреждение</value>
     </data>
     <data name="CopyRoomId" xml:space="preserve">
-        <value>Спопировать id комнаты</value>
+        <value>Скопировать id комнаты</value>
     </data>
     <data name="DeleteRoom" xml:space="preserve">
         <value>Удалить комнату</value>
@@ -208,7 +205,7 @@
         <value>Ты уже находишься в этой комнате. Обнови страницу и поищи ее в списке</value>
     </data>
     <data name="ChangeRole" xml:space="preserve">
-        <value>Сменить роль</value>
+        <value>Роль</value>
     </data>
     <data name="AvailableRoles" xml:space="preserve">
         <value>Доступные роли</value>
@@ -233,5 +230,26 @@
     </data>
     <data name="Deadline" xml:space="preserve">
         <value>Крайний срок</value>
+    </data>
+    <data name="LoadFail" xml:space="preserve">
+        <value>Не получилось загрузить информацию! Попробуйте еще раз позже!</value>
+    </data>
+    <data name="TaskIsCreatedBy" xml:space="preserve">
+        <value>Создатель задачи: {0} {1} {2}</value>
+    </data>
+    <data name="DeleteTask" xml:space="preserve">
+        <value>Удалить задачу</value>
+    </data>
+    <data name="CompleteTask" xml:space="preserve">
+        <value>Завершить задачу</value>
+    </data>
+    <data name="TaskCompleted" xml:space="preserve">
+        <value>Эта задача выполнена</value>
+    </data>
+    <data name="TaskNotCompleted" xml:space="preserve">
+        <value>Задача не выполнена</value>
+    </data>
+    <data name="ConfirmTaskCompleted" xml:space="preserve">
+        <value>Вы действительно хотите подтвердить выполнение задачи?</value>
     </data>
 </root>

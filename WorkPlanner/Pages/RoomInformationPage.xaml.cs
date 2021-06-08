@@ -40,7 +40,7 @@ namespace WorkPlanner.Pages
             MessagingCenter.Subscribe<Room>(this, Messages.RoomInformationUpdateSuccess, _ =>
             {
                 _acceptToolbarItem.IsEnabled = true;
-                InformationPage.ToolbarItems.Clear();
+                ToolbarItems.Clear();
             });
 
             MessagingCenter.Subscribe<string>(this, Messages.RoomInformationUpdateFail, message =>
@@ -61,10 +61,14 @@ namespace WorkPlanner.Pages
             MessagingCenter.Subscribe<RoomInformationPageViewModel>(this, Messages.UsersUpdateSuccess,
                 _ => UsersRefreshView.IsRefreshing = false);
 
+            MessagingCenter.Subscribe<string>(this, Messages.RoomDeletionFail,
+                async message => await DisplayAlert(AppResources.Error, message, "Ok"));
+
             ChangeUserRoleCommand = new Command(ChangeUserRole);
 
             ServerHelper.HandleConnectionFailed(this, _viewModel);
 
+            UsersRefreshView.IsRefreshing = true;
             _viewModel.LoadUsersCommand.Execute(this);
         }
 
@@ -81,20 +85,20 @@ namespace WorkPlanner.Pages
 
         private void AcceptOnClicked()
         {
-            _viewModel.UpdateRoomCommand.Execute(this);
             _acceptToolbarItem.IsEnabled = false;
+            _viewModel.UpdateRoomCommand.Execute(this);
         }
 
         private void RoomInformationChanged(object sender, TextChangedEventArgs e)
         {
             if (RoomDescriptionEditor.Text == _savedRoomDescription && RoomNameEntry.Text == _savedRoomName)
             {
-                InformationPage.ToolbarItems.Clear();
+                ToolbarItems.Clear();
                 return;
             }
 
-            InformationPage.ToolbarItems.Clear();
-            InformationPage.ToolbarItems.Add(_acceptToolbarItem);
+            ToolbarItems.Clear();
+            ToolbarItems.Add(_acceptToolbarItem);
         }
 
         private async void ChangeUserRole(object parameter)
@@ -104,7 +108,7 @@ namespace WorkPlanner.Pages
 
             string roleName = await DisplayActionSheet(AppResources.AvailableRoles, AppResources.Cancel, null,
                 AppResources.OwnerRole, AppResources.AdministratorRole, AppResources.MemberRole);
-            if (roleName == AppResources.Cancel)
+            if (roleName == AppResources.Cancel || roleName == null)
                 return;
 
             var client = ServerHelper.GetClient();

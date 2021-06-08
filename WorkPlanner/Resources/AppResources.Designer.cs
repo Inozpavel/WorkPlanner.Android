@@ -115,11 +115,29 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change role.
+        ///   Looks up a localized string similar to Role.
         /// </summary>
         internal static string ChangeRole {
             get {
                 return ResourceManager.GetString("ChangeRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete task.
+        /// </summary>
+        internal static string CompleteTask {
+            get {
+                return ResourceManager.GetString("CompleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to confirm the completion of the task?.
+        /// </summary>
+        internal static string ConfirmTaskCompleted {
+            get {
+                return ResourceManager.GetString("ConfirmTaskCompleted", resourceCulture);
             }
         }
         
@@ -201,6 +219,15 @@ namespace WorkPlanner.Resources {
         internal static string DeleteRoom {
             get {
                 return ResourceManager.GetString("DeleteRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete task.
+        /// </summary>
+        internal static string DeleteTask {
+            get {
+                return ResourceManager.GetString("DeleteTask", resourceCulture);
             }
         }
         
@@ -304,15 +331,6 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registration error.
-        /// </summary>
-        internal static string FailedRegistrationAlertTitle {
-            get {
-                return ResourceManager.GetString("FailedRegistrationAlertTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Failed to get error!.
         /// </summary>
         internal static string FailedToGetError {
@@ -390,6 +408,15 @@ namespace WorkPlanner.Resources {
         internal static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load information! Please try again later!.
+        /// </summary>
+        internal static string LoadFail {
+            get {
+                return ResourceManager.GetString("LoadFail", resourceCulture);
             }
         }
         
@@ -610,6 +637,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This task is completed.
+        /// </summary>
+        internal static string TaskCompleted {
+            get {
+                return ResourceManager.GetString("TaskCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Task content.
         /// </summary>
         internal static string TaskContent {
@@ -619,11 +655,29 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task creator: {0} {1} {2}.
+        /// </summary>
+        internal static string TaskIsCreatedBy {
+            get {
+                return ResourceManager.GetString("TaskIsCreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Task name.
         /// </summary>
         internal static string TaskName {
             get {
                 return ResourceManager.GetString("TaskName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task not completed.
+        /// </summary>
+        internal static string TaskNotCompleted {
+            get {
+                return ResourceManager.GetString("TaskNotCompleted", resourceCulture);
             }
         }
         

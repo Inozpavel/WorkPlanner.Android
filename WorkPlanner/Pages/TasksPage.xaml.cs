@@ -26,10 +26,10 @@ namespace WorkPlanner.Pages
 
             _viewModel.ConnectionFailed += (_, _) => TasksRefreshView.IsRefreshing = false;
 
-            MessagingCenter.Subscribe<TasksPageViewModel>(this, Messages.TasksUpdateSuccess,
+            MessagingCenter.Subscribe<TasksPageViewModel>(this, Messages.TasksLoadSuccess,
                 _ => TasksRefreshView.IsRefreshing = false);
 
-            MessagingCenter.Subscribe<TasksPageViewModel>(this, Messages.TasksUpdateFail, async _ =>
+            MessagingCenter.Subscribe<TasksPageViewModel>(this, Messages.TasksLoadFail, async _ =>
             {
                 TasksRefreshView.IsRefreshing = false;
                 await DisplayAlert(AppResources.Error, AppResources.UpdateFailed, "Ok");
@@ -47,14 +47,6 @@ namespace WorkPlanner.Pages
             ServerHelper.HandleConnectionFailed(this, _viewModel);
 
             _viewModel.LoadTasksCommand.Execute(this);
-        }
-
-        private async void TasksListViewOnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (e.Item is not RoomTask roomTask)
-                return;
-
-            await Navigation.PushAsync(new TaskDetailsPage(roomTask));
         }
 
         private async void AddTaskOnClicked(object sender, EventArgs e)
@@ -75,7 +67,7 @@ namespace WorkPlanner.Pages
             if (e.CurrentSelection.FirstOrDefault() is not RoomTask roomTask)
                 return;
 
-            await Navigation.PushAsync(new TaskDetailsPage(roomTask));
+            await Navigation.PushAsync(new TaskDetailsPage(_room.RoomId, roomTask.RoomTaskId));
         }
     }
 }

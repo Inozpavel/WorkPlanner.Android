@@ -2,7 +2,9 @@
 {
     public static class Settings
     {
-        private const string UrlBase = "http://10.0.2.2:5000/gateway/";
+        private const string UrlBase = "http://mc.icomm.pro:4000/gateway/";
+
+        // private const string UrlBase = "http://10.0.2.2:5000/gateway/";
 
         private const string AccountsUrlBase = UrlBase + "users-api/accounts/";
 
@@ -13,6 +15,8 @@
         public const string ProfileDataUrl = UrlBase + "identity/connect/userinfo";
 
         public const string ResendEmailUrl = AccountsUrlBase + "resend-confirmation-mail";
+
+        public const string UpdateProfileUrl = AccountsUrlBase + "profile";
 
 
         private const string RoomsUrlBase = UrlBase + "rooms-api/rooms";
@@ -34,13 +38,19 @@
 
         public const string AllTasksUrl = TasksUrlBase;
 
+        public const string TaskUrl = TasksUrlBase + "/{1}";
+
+        public const string TaskCreatorUrl = TaskUrl + "/creator";
+
         public const string AddTaskUrl = TasksUrlBase;
+
+        public const string CompleteTaskUrl = TaskUrl + "/complete";
 
 
         private const string RolesUrlBase = UrlBase + "rooms-api/";
 
         public const string AllRolesUrl = RolesUrlBase + "roles";
-        
+
         public const string ChangeRoleUrl = RolesUrlBase + "rooms/{0}/roles";
     }
 }

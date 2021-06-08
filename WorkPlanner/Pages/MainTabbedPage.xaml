@@ -14,7 +14,4 @@
     <pages:ProfilePage IconImageSource="profile.png"
                        Title="{x:Static resources:AppResources.ProfilePageTitle}" />
 
-    <pages:SettingsPage IconImageSource="settings.png"
-                        Title="{x:Static resources:AppResources.SettingsPageTitle}" />
-
 </TabbedPage>

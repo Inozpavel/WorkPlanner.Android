@@ -8,7 +8,7 @@ using Platform = Xamarin.Essentials.Platform;
 
 namespace WorkPlanner.Droid
 {
-    [Activity(Label = "WorkPlanner", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "WorkPlanner", Icon = "@mipmap/appicon", Theme = "@style/MainTheme", MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode |
                                ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : FormsAppCompatActivity

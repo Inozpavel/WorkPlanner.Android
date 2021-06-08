@@ -2,8 +2,6 @@
 {
     public static class Messages
     {
-        public const string Back = nameof(Back);
-
         public const string RoomAdditionSuccess = nameof(RoomAdditionSuccess);
 
         public const string RoomAdditionFail = nameof(RoomAdditionFail);
@@ -28,20 +26,50 @@
 
         public const string TaskAdditionFail = nameof(TaskAdditionFail);
 
-        public const string TaskDeleted = nameof(TaskDeleted);
+        public const string TaskDeletionSuccess = nameof(TaskDeletionSuccess);
 
-        public const string TasksUpdateSuccess = nameof(TasksUpdateSuccess);
+        public const string TaskDeletionFail = nameof(TaskDeletionFail);
 
-        public const string TasksUpdateFail = nameof(TasksUpdateFail);
+        public const string TaskUpdateSuccess = nameof(TaskUpdateSuccess);
+
+        public const string TaskUpdateFail = nameof(TaskUpdateFail);
+
+        public const string TasksCompletionSuccess = nameof(TasksCompletionSuccess);
+
+        public const string TasksCompletionFail = nameof(TasksCompletionFail);
+
+        public const string TasksLoadSuccess = nameof(TasksLoadSuccess);
+
+        public const string TasksLoadFail = nameof(TasksLoadFail);
+
+        public const string TaskLoadFail = nameof(TaskLoadFail);
+
+        public const string TaskCreatorLoadFail = nameof(TaskCreatorLoadFail);
+
+        public const string TaskCreatorLoadSuccess = nameof(TaskCreatorLoadSuccess);
+
+        public const string TaskLoadSuccess = nameof(TaskLoadSuccess);
 
         public const string UsersUpdateSuccess = nameof(UsersUpdateSuccess);
 
         public const string UsersUpdateFail = nameof(UsersUpdateFail);
-        
+
         public const string RoleUpdateFail = nameof(RoleUpdateFail);
-        
-        public const string RoleUpdateSuccess= nameof(RoleUpdateSuccess);
-        
-        
+
+        public const string RoleUpdateSuccess = nameof(RoleUpdateSuccess);
+
+        public const string RegistrationSuccess = nameof(RegistrationSuccess);
+
+        public const string RegistrationFail = nameof(RegistrationFail);
+
+        public const string ActionStarted = nameof(ActionStarted);
+
+        public const string ProfileUpdateSuccess = nameof(ProfileUpdateSuccess);
+
+        public const string ProfileUpdateFail = nameof(ProfileUpdateFail);
+
+        public const string ProfileLoadSuccess = nameof(ProfileLoadSuccess);
+
+        public const string ProfileLoadFail = nameof(ProfileLoadFail);
     }
 }

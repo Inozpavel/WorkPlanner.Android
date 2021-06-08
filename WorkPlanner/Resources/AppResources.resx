@@ -66,9 +66,6 @@
     <data name="SuccessfulRegistrationAlertTitle" xml:space="preserve">
         <value>Sucessfull registration</value>
     </data>
-    <data name="FailedRegistrationAlertTitle" xml:space="preserve">
-        <value>Registration error</value>
-    </data>
     <data name="ConnectionFailed" xml:space="preserve">
         <value>Failed to connect to the server, please try again later</value>
     </data>
@@ -208,7 +205,7 @@
         <value>You are already in this room. Refresh the page and look for it in the list</value>
     </data>
     <data name="ChangeRole" xml:space="preserve">
-        <value>Change role</value>
+        <value>Role</value>
     </data>
     <data name="AvailableRoles" xml:space="preserve">
         <value>Available roles</value>
@@ -233,5 +230,26 @@
     </data>
     <data name="Deadline" xml:space="preserve">
         <value>Deadline</value>
+    </data>
+    <data name="LoadFail" xml:space="preserve">
+        <value>Failed to load information! Please try again later!</value>
+    </data>
+    <data name="TaskIsCreatedBy" xml:space="preserve">
+        <value>Task creator: {0} {1} {2}</value>
+    </data>
+    <data name="DeleteTask" xml:space="preserve">
+        <value>Delete task</value>
+    </data>
+    <data name="CompleteTask" xml:space="preserve">
+        <value>Complete task</value>
+    </data>
+    <data name="TaskCompleted" xml:space="preserve">
+        <value>This task is completed</value>
+    </data>
+    <data name="TaskNotCompleted" xml:space="preserve">
+        <value>Task not completed</value>
+    </data>
+    <data name="ConfirmTaskCompleted" xml:space="preserve">
+        <value>Are you sure you want to confirm the completion of the task?</value>
     </data>
 </root>

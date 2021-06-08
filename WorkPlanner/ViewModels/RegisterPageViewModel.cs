@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,18 +22,12 @@ namespace WorkPlanner.ViewModels
 
         public RegisterUserRequest Request { get; }
 
-        public event EventHandler<string> OnRegistrationFailed;
-
-        public event EventHandler OnSendingDataStarted;
-
-        public event EventHandler OnRegistrationSuccess;
-
         private async Task Register()
         {
-            OnSendingDataStarted?.Invoke(this, EventArgs.Empty);
+            MessagingCenter.Send(this, Messages.ActionStarted);
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                OnRegistrationFailed?.Invoke(this, AppResources.InternetIsMissing);
+                MessagingCenter.Send(AppResources.InternetIsMissing, Messages.RegistrationFail);
                 return;
             }
 
@@ -45,12 +38,12 @@ namespace WorkPlanner.ViewModels
 
             if (result.StatusCode == HttpStatusCode.OK)
             {
-                OnRegistrationSuccess?.Invoke(this, EventArgs.Empty);
+                MessagingCenter.Send(this, Messages.RegistrationSuccess);
                 return;
             }
 
             string errorBody = await result.Content.ReadAsStringAsync();
-            OnRegistrationFailed?.Invoke(this, ServerHelper.GetErrorFromResponse(errorBody));
+            MessagingCenter.Send(ServerHelper.GetErrorFromResponse(errorBody), Messages.RegistrationFail);
         }
     }
 }

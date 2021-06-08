@@ -115,11 +115,29 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Сменить роль.
+        ///   Looks up a localized string similar to Роль.
         /// </summary>
         internal static string ChangeRole {
             get {
                 return ResourceManager.GetString("ChangeRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Завершить задачу.
+        /// </summary>
+        internal static string CompleteTask {
+            get {
+                return ResourceManager.GetString("CompleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вы действительно хотите подтвердить выполнение задачи?.
+        /// </summary>
+        internal static string ConfirmTaskCompleted {
+            get {
+                return ResourceManager.GetString("ConfirmTaskCompleted", resourceCulture);
             }
         }
         
@@ -133,7 +151,7 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Спопировать id комнаты.
+        ///   Looks up a localized string similar to Скопировать id комнаты.
         /// </summary>
         internal static string CopyRoomId {
             get {
@@ -201,6 +219,15 @@ namespace WorkPlanner.Resources {
         internal static string DeleteRoom {
             get {
                 return ResourceManager.GetString("DeleteRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить задачу.
+        /// </summary>
+        internal static string DeleteTask {
+            get {
+                return ResourceManager.GetString("DeleteTask", resourceCulture);
             }
         }
         
@@ -304,15 +331,6 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ошибка при регистрации.
-        /// </summary>
-        internal static string FailedRegistrationAlertTitle {
-            get {
-                return ResourceManager.GetString("FailedRegistrationAlertTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Не получилось получить информацию об ошибке!.
         /// </summary>
         internal static string FailedToGetError {
@@ -390,6 +408,15 @@ namespace WorkPlanner.Resources {
         internal static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не получилось загрузить информацию! Попробуйте еще раз позже!.
+        /// </summary>
+        internal static string LoadFail {
+            get {
+                return ResourceManager.GetString("LoadFail", resourceCulture);
             }
         }
         
@@ -583,7 +610,7 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Зарегестрироваться.
+        ///   Looks up a localized string similar to Зарегистрироваться.
         /// </summary>
         internal static string SubmitRegisterButton {
             get {
@@ -610,6 +637,15 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Эта задача выполнена.
+        /// </summary>
+        internal static string TaskCompleted {
+            get {
+                return ResourceManager.GetString("TaskCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Содержание задачи.
         /// </summary>
         internal static string TaskContent {
@@ -619,11 +655,29 @@ namespace WorkPlanner.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Создатель задачи: {0} {1} {2}.
+        /// </summary>
+        internal static string TaskIsCreatedBy {
+            get {
+                return ResourceManager.GetString("TaskIsCreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Название задачи.
         /// </summary>
         internal static string TaskName {
             get {
                 return ResourceManager.GetString("TaskName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Задача не выполнена.
+        /// </summary>
+        internal static string TaskNotCompleted {
+            get {
+                return ResourceManager.GetString("TaskNotCompleted", resourceCulture);
             }
         }
         

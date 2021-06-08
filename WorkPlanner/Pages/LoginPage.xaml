@@ -11,12 +11,12 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid BackgroundColor="White"
+        <Grid BackgroundColor="Transparent"
               Margin="10">
 
             <Grid.Resources>
                 <Style TargetType="Entry">
-                    <Setter Property="Background" Value="White" />
+                    <Setter Property="BackgroundColor" Value="Transparent" />
                 </Style>
             </Grid.Resources>
 
@@ -46,6 +46,8 @@
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    x:Name="LoginEntry"
+                   Keyboard="Email"
+                   ClearButtonVisibility="WhileEditing"
                    Placeholder="{x:Static resources:AppResources.Email}"
                    Text="{Binding Login}"
                    Unfocused="CheckCorrectDataEntered" />
@@ -55,6 +57,8 @@
                    Grid.ColumnSpan="2"
                    x:Name="PasswordEntry"
                    IsPassword="True"
+                   Keyboard="Text"
+                   ClearButtonVisibility="WhileEditing"
                    Placeholder="{x:Static resources:AppResources.Password}"
                    Text="{Binding Password}"
                    Unfocused="CheckCorrectDataEntered" />
@@ -81,7 +85,7 @@
                 <Switch Margin="0, 0, 0, 0"
                         IsToggled="{Binding ShouldRememberUser}" />
                 <Label Text="{x:Static resources:AppResources.RememberUser}"
-                       VerticalOptions="Center"/>
+                       VerticalOptions="Center" />
             </StackLayout>
 
             <Button Grid.Row="5"

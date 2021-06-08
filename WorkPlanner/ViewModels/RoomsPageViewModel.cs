@@ -22,6 +22,8 @@ namespace WorkPlanner.ViewModels
 
             MessagingCenter.Subscribe<Room>(this, Messages.RoomAdditionSuccess, room => Rooms.Add(room));
 
+            MessagingCenter.Subscribe<Room>(this, Messages.RoomDeletionSuccess, room => Rooms.Remove(room));
+
             MessagingCenter.Subscribe<Room>(this, Messages.RoomDeletionFail, room => Rooms.Remove(room));
 
             MessagingCenter.Subscribe<Room>(this, Messages.RoomInformationUpdateSuccess, updatedRoom =>

@@ -28,21 +28,23 @@ namespace WorkPlanner.Pages
                     await DisplayAlert(AppResources.Error, AppResources.UpdateFailed, "Ok");
                 });
 
-            MessagingCenter.Subscribe<RoomInformationPage>(this, Messages.Back, async _ =>
-            {
-                await Navigation.PopAsync();
-                await Navigation.PopAsync();
-            });
-
             MessagingCenter.Subscribe<Room>(this, Messages.RoomAdditionSuccess,
                 async _ => await Navigation.PopModalAsync());
 
             MessagingCenter.Subscribe<string>(this, Messages.RoomJoinFail,
                 async message => await DisplayAlert(AppResources.Error, message, "Ok"));
 
+            MessagingCenter.Subscribe<Room>(this, Messages.RoomDeletionSuccess, async _ =>
+            {
+                await Navigation.PopAsync();
+                await Navigation.PopAsync();
+            });
+
             ServerHelper.HandleConnectionFailed(this, _viewModel);
 
             _viewModel.ConnectionFailed += (_, _) => RoomsRefreshView.IsRefreshing = false;
+
+            RoomsRefreshView.IsRefreshing = true;
             _viewModel.UpdateRoomsCommand.Execute(this);
         }
 

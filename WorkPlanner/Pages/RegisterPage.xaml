@@ -11,132 +11,154 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
+
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="Black" />
             <Setter Property="FontSize" Value="17" />
         </Style>
+
+        <Style TargetType="Frame">
+            <Setter Property="Padding" Value="10" />
+        </Style>
+
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid Padding="10, 10, 10, 0">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <ScrollView>
 
-            <Frame Grid.Row="0">
-                <Grid>
+            <Grid Padding="5">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
+                <Frame Grid.Row="0">
+                    <Grid>
 
-                    <Label Grid.Row="0"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Text="{x:Static resources:AppResources.YourName}" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <Entry Grid.Row="1"
-                           Grid.Column="0"
-                           Placeholder="{x:Static resources:AppResources.LastName}"
-                           Text="{Binding Request.LastName}" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
-                    <Entry Grid.Row="1"
-                           Grid.Column="1"
-                           Placeholder="{x:Static resources:AppResources.FirstName}"
-                           Text="{Binding Request.FirstName}" />
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Text="{x:Static resources:AppResources.YourName}" />
 
-                    <Entry Grid.Row="2"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Placeholder="{x:Static resources:AppResources.Patronymic}"
-                           Text="{Binding Request.Patronymic}" />
+                        <Entry Grid.Row="1"
+                               Grid.Column="0"
+                               Keyboard="Text"
+                               Placeholder="{x:Static resources:AppResources.LastName}"
+                               Text="{Binding Request.LastName}" />
 
-                </Grid>
-            </Frame>
+                        <Entry Grid.Row="1"
+                               Grid.Column="1"
+                               Keyboard="Text"
+                               Placeholder="{x:Static resources:AppResources.FirstName}"
+                               Text="{Binding Request.FirstName}" />
 
-            <Frame Grid.Row="1">
-                <Grid>
+                        <Entry Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               Keyboard="Text"
+                               Placeholder="{x:Static resources:AppResources.Patronymic}"
+                               Text="{Binding Request.Patronymic}" />
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+                    </Grid>
+                </Frame>
 
-                    <Label Grid.Row="0" Text="{x:Static resources:AppResources.Email}" />
+                <Frame Grid.Row="1">
+                    <Grid>
 
-                    <Entry Grid.Row="1"
-                           Keyboard="Email"
-                           Placeholder="{x:Static resources:AppResources.Email}"
-                           Text="{Binding Request.Email}" />
-                </Grid>
-            </Frame>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Text="{x:Static resources:AppResources.Email}" />
+
+                        <Entry Grid.Row="1"
+                               Keyboard="Email"
+                               Placeholder="{x:Static resources:AppResources.Email}"
+                               Text="{Binding Request.Email}" />
+
+                        <Label Grid.Row="2"
+                               Text="{x:Static resources:AppResources.PhoneNumber}" />
+                        <Entry Grid.Row="3"
+                               Keyboard="Telephone"
+                               Placeholder="{x:Static resources:AppResources.PhoneNumber}"
+                               Text="{Binding Request.PhoneNumber}" />
+                    </Grid>
+                </Frame>
 
 
-            <Frame Grid.Row="2">
-                <Grid>
+                <Frame Grid.Row="2">
+                    <Grid>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Text="{x:Static  resources:AppResources.YourPassword}" />
+                        <Label Grid.Row="0" Text="{x:Static  resources:AppResources.YourPassword}" />
 
-                    <Entry Grid.Row="1"
-                           x:Name="PasswordEntry"
-                           IsPassword="True"
-                           Placeholder="{x:Static resources:AppResources.Password}"
-                           Text="{Binding Request.Password}" />
+                        <Entry Grid.Row="1"
+                               x:Name="PasswordEntry"
+                               IsPassword="True"
+                               Keyboard="Text"
+                               Placeholder="{x:Static resources:AppResources.Password}"
+                               Text="{Binding Request.Password}" />
 
-                    <Entry Grid.Row="2"
-                           x:Name="PasswordConfirmationEntry"
-                           IsPassword="True"
-                           Placeholder="{x:Static resources:AppResources.PasswordConfirmation}"
-                           Text="{Binding Request.PasswordConfirmation}" />
+                        <Entry Grid.Row="2"
+                               x:Name="PasswordConfirmationEntry"
+                               IsPassword="True"
+                               Keyboard="Text"
+                               Placeholder="{x:Static resources:AppResources.PasswordConfirmation}"
+                               Text="{Binding Request.PasswordConfirmation}" />
 
-                    <StackLayout Grid.Row="3" Orientation="Horizontal">
+                        <StackLayout Grid.Row="3" Orientation="Horizontal">
 
-                        <CheckBox Color="Black"
-                                  CheckedChanged="CheckBox_OnCheckedChanged" />
+                            <CheckBox Color="Black"
+                                      CheckedChanged="CheckBoxOnCheckedChanged" />
 
-                        <Label VerticalOptions="Center"
-                               Text="{x:Static resources:AppResources.ShouldShowPassword}" />
+                            <Label VerticalOptions="Center"
+                                   Text="{x:Static resources:AppResources.ShouldShowPassword}" />
 
-                    </StackLayout>
+                        </StackLayout>
 
-                </Grid>
-            </Frame>
+                    </Grid>
+                </Frame>
 
-            <StackLayout Grid.Row="3"
-                         Orientation="Vertical"
-                         VerticalOptions="End">
-                
-                <BoxView HeightRequest="2"
-                         BackgroundColor="Black"/>
+                <StackLayout Grid.Row="3"
+                             Orientation="Vertical"
+                             VerticalOptions="End">
 
-                <Button HorizontalOptions="FillAndExpand"
-                        BackgroundColor="CornflowerBlue"
-                        TextTransform="None"
-                        VerticalOptions="End"
-                        Margin="0, 0, 0, 5"
-                        Text="{x:Static resources:AppResources.SubmitRegisterButton}"
-                        Command="{Binding RegisterCommand}" />
-                
-            </StackLayout>
+                    <Button HorizontalOptions="FillAndExpand"
+                            BackgroundColor="CornflowerBlue"
+                            TextTransform="None"
+                            VerticalOptions="End"
+                            Text="{x:Static resources:AppResources.SubmitRegisterButton}"
+                            Command="{Binding RegisterCommand}" />
 
-        </Grid>
+                </StackLayout>
+
+            </Grid>
+
+        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

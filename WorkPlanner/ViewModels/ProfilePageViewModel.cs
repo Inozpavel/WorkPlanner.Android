@@ -1,112 +1,40 @@
 ﻿using System;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using WorkPlanner.Models;
+using WorkPlanner.Requests;
 using Xamarin.Forms;
 
 namespace WorkPlanner.ViewModels
 {
     public sealed class ProfilePageViewModel : BaseViewModel
     {
-        private string _email;
-
-        private string _firstName;
-
-        private bool _isEmailVerified;
-
-        private string _lastName;
-
-        private string _patronymic;
-
-        private string _phoneNumber;
-
         public ProfilePageViewModel()
         {
-            UpdateProfileCommand = new Command(ServerHelper.DecorateFailedConnectToServer(UpdateProfileData, () =>
-            {
-                OnConnectionFailed();
-                OnFailedUpdate();
-            }));
+            Profile = new Profile();
+            LoadProfileCommand =
+                new Command(ServerHelper.DecorateFailedConnectToServer(LoadProfile, OnConnectionFailed));
             ResendConfirmationMailCommand = new Command(
                 ServerHelper.DecorateFailedConnectToServer(ResendConfirmationMail, OnConnectionFailed));
+            UpdateProfileCommand =
+                new Command(ServerHelper.DecorateFailedConnectToServer(UpdateProfile, OnConnectionFailed));
         }
 
-        [JsonProperty("first_name")]
-        public string FirstName
-        {
-            get => _firstName;
-            set
-            {
-                _firstName = value;
-                OnPropertyChanged();
-            }
-        }
+        public Profile Profile { get; }
 
-        [JsonProperty("last_name")]
-        public string LastName
-        {
-            get => _lastName;
-            set
-            {
-                _lastName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Patronymic
-        {
-            get => _patronymic;
-            set
-            {
-                _patronymic = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Email
-        {
-            get => _email;
-            set
-            {
-                _email = value;
-                OnPropertyChanged();
-            }
-        }
-
-        [JsonProperty("phone_number")]
-        public string PhoneNumber
-        {
-            get => _phoneNumber;
-            set
-            {
-                _phoneNumber = value;
-                OnPropertyChanged();
-            }
-        }
-
-        [JsonProperty("email_verified")]
-        public bool IsEmailVerified
-        {
-            get => _isEmailVerified;
-            set
-            {
-                _isEmailVerified = value;
-                OnPropertyChanged();
-            }
-        }
+        public Command LoadProfileCommand { get; }
 
         public Command UpdateProfileCommand { get; }
 
         public Command ResendConfirmationMailCommand { get; }
 
-        public event EventHandler SuccessfulUpdate;
-
-        public event EventHandler FailedUpdate;
-
         public event EventHandler SuccessfulEmailResent;
 
         public event EventHandler FailedEmailResent;
 
-        private async Task UpdateProfileData()
+        private async Task LoadProfile()
         {
             var client = await ServerHelper.GetClientWithToken();
 
@@ -115,25 +43,52 @@ namespace WorkPlanner.ViewModels
             if (result.IsSuccessStatusCode)
             {
                 string content = await result.Content.ReadAsStringAsync();
-                var model = JsonConvert.DeserializeObject<ProfilePageViewModel>(content);
+                var model = JsonConvert.DeserializeObject<Profile>(content);
 
-                FirstName = model.FirstName;
-                LastName = model.LastName;
-                Patronymic = model.Patronymic;
-                PhoneNumber = model.PhoneNumber;
-                Email = model.Email;
-                IsEmailVerified = model.IsEmailVerified;
-                OnSuccessfulUpdate();
+                Profile.FirstName = model.FirstName;
+                Profile.LastName = model.LastName;
+                Profile.Patronymic = model.Patronymic;
+                Profile.PhoneNumber = model.PhoneNumber;
+                Profile.Email = model.Email;
+                Profile.IsEmailVerified = model.IsEmailVerified;
+
+                MessagingCenter.Send(model, Messages.ProfileLoadSuccess);
                 return;
             }
 
-            OnFailedUpdate();
+            MessagingCenter.Send(this, Messages.ProfileLoadFail);
+        }
+
+        private async Task UpdateProfile()
+        {
+            var client = await ServerHelper.GetClientWithToken();
+
+            var updateModel = new UpdateProfileRequest
+            {
+                LastName = Profile.LastName,
+                FirstName = Profile.FirstName,
+                Patronymic = Profile.Patronymic,
+                PhoneNumber = Profile.PhoneNumber,
+            };
+            string data = await ServerHelper.SerializeAsync(updateModel);
+
+            var result = await client.PutAsync(Settings.UpdateProfileUrl,
+                new StringContent(data, Encoding.UTF8, "application/json"));
+
+            if (result.IsSuccessStatusCode)
+            {
+                MessagingCenter.Send(this, Messages.ProfileUpdateSuccess);
+                return;
+            }
+
+            string resultContent = await result.Content.ReadAsStringAsync();
+            MessagingCenter.Send(ServerHelper.GetErrorFromResponse(resultContent), Messages.ProfileUpdateFail);
         }
 
         private async Task ResendConfirmationMail()
         {
             var client = ServerHelper.GetClient();
-            client.DefaultRequestHeaders.Add("registeredEmail", Email);
+            client.DefaultRequestHeaders.Add("registeredEmail", Profile.Email);
 
             var result = await client.GetAsync(Settings.ResendEmailUrl);
 
@@ -145,10 +100,5 @@ namespace WorkPlanner.ViewModels
 
             FailedEmailResent?.Invoke(this, EventArgs.Empty);
         }
-
-
-        private void OnSuccessfulUpdate() => SuccessfulUpdate?.Invoke(this, EventArgs.Empty);
-
-        private void OnFailedUpdate() => FailedUpdate?.Invoke(this, EventArgs.Empty);
     }
 }

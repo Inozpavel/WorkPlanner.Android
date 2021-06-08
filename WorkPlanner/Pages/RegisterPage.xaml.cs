@@ -1,5 +1,4 @@
-﻿using System;
-using WorkPlanner.Resources;
+﻿using WorkPlanner.Resources;
 using WorkPlanner.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,39 +15,36 @@ namespace WorkPlanner.Pages
             InitializeComponent();
             RegisterPageViewModel viewModel = new();
 
-            viewModel.OnSendingDataStarted += ContextOnOnSendingDataStarted;
-            viewModel.OnRegistrationFailed += ContextOnOnRegistrationFailed;
-            viewModel.OnRegistrationSuccess += ContextOnOnRegistrationSuccess;
+
+            MessagingCenter.Subscribe<RegisterPageViewModel>(this, Messages.RegistrationSuccess, async _ =>
+            {
+                Content = _savedContent;
+                await DisplayAlert(AppResources.SuccessfulRegistrationAlertTitle,
+                    AppResources.SuccessfulRegistrationAlertMessage, "Ok");
+                await Navigation.PopModalAsync();
+            });
+            MessagingCenter.Subscribe<string>(this, Messages.RegistrationFail, async message =>
+            {
+                Content = _savedContent;
+                await DisplayAlert(AppResources.Error, message, "Ok");
+            });
+            MessagingCenter.Subscribe<RegisterPageViewModel>(this, Messages.ActionStarted, _ =>
+            {
+                _savedContent = Content;
+                Content = new ActivityIndicator
+                {
+                    IsRunning = true,
+                    Color = Color.Orange
+                };
+            });
+            viewModel.ConnectionFailed += (_, _) => Content = _savedContent;
 
             ServerHelper.HandleConnectionFailed(this, viewModel);
 
             BindingContext = viewModel;
         }
 
-        private void ContextOnOnSendingDataStarted(object sender, EventArgs e)
-        {
-            _savedContent = Content;
-            Content = new ActivityIndicator
-            {
-                IsRunning = true
-            };
-        }
-
-        private async void ContextOnOnRegistrationSuccess(object sender, EventArgs e)
-        {
-            Content = _savedContent;
-            await DisplayAlert(AppResources.SuccessfulRegistrationAlertTitle,
-                AppResources.SuccessfulRegistrationAlertMessage, "Ok");
-            await Navigation.PopModalAsync();
-        }
-
-        private async void ContextOnOnRegistrationFailed(object sender, string errorMessage)
-        {
-            Content = _savedContent;
-            await DisplayAlert(AppResources.FailedRegistrationAlertTitle, errorMessage, "Ok");
-        }
-
-        private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        private void CheckBoxOnCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             if (sender is not CheckBox checkBox)
                 return;
