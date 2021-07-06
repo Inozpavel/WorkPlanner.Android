@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkPlanner.Android", "Work
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkPlanner", "WorkPlanner\WorkPlanner.csproj", "{CD2ACD08-E8C7-45A1-842A-CC36E853CF64}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{27B992A0-32B3-4C49-9AF8-DE3BD4BCD2EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2694E833-CE22-42B1-B284-018E62276750}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,5 +38,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA72704B-EB2E-4D68-954F-13927AC2EFDE}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD2ACD08-E8C7-45A1-842A-CC36E853CF64} = {27B992A0-32B3-4C49-9AF8-DE3BD4BCD2EA}
+		{E523D2CC-9800-403F-B24B-4CED2B0EEC57} = {27B992A0-32B3-4C49-9AF8-DE3BD4BCD2EA}
 	EndGlobalSection
 EndGlobal
